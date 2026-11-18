@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Living English — Learn With Joy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --mint: #B6D7C2;
+      --mint-light: #EAF4EE;
+      --mint-border: #CFE5D7;
+      --sky: #3B9ED8;
+      --sky-light: #E8F5FC;
+      --sky-dark: #2581B8;
+      --magenta: #E8358C;
+      --magenta-light: #FDEAF3;
+      --ink: #1B2420;
+      --muted: #5F6F68;
+      --bg: #F5F9F7;
+      --card: #FFFFFF;
+      --border: #E1EAE5;
+      --success: #10B981;
+      --success-bg: #D1FAE5;
+      --error: #EF4444;
+      --error-bg: #FEE2E2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif; }
+    body { background-color: var(--bg); color: var(--ink); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+    h1, h2, h3, .brand-font { font-family: 'Quicksand', 'Segoe UI', sans-serif; }
+
+    header {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(27, 36, 32, 0.04);
+    }
+    .header-inner { max-width: 1040px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .brand-lockup { display: flex; align-items: center; gap: 0.85rem; cursor: pointer; }
+    .brand-lockup svg { width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(59, 158, 216, 0.15); }
+    .brand-text-group { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand-title { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: 0.06em; color: var(--ink); }
+    .brand-sub { font-size: 0.68rem; letter-spacing: 0.22em; color: var(--muted); font-weight: 600; margin-top: 2px; }
+    .header-pill {
+      background: var(--mint-light); color: var(--ink); border: 1px solid var(--mint-border);
+      padding: 0.4rem 1rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+      display: flex; align-items: center; gap: 0.45rem;
+    }
+    .header-pill::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--magenta); display: inline-block; }
+
+    main { max-width: 1000px; width: 92%; margin: 2rem auto 3rem; flex: 1; }
+    .hidden { display: none !important; }
+    .fade-in { animation: fadeIn 0.28s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero-banner {
+      background: linear-gradient(135deg, var(--mint) 0%, #CBE5D5 60%, #DCF0E4 100%);
+      border-radius: 22px; padding: 2.2rem 2.5rem; display: flex; align-items: center; gap: 2.2rem;
+      margin-bottom: 2.5rem; box-shadow: 0 12px 30px rgba(182, 215, 194, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.6); position: relative; overflow: hidden;
+    }
+    .hero-banner::after {
+      content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px;
+      border-radius: 50%; background: rgba(255, 255, 255, 0.25); pointer-events: none;
+    }
+    .hero-logo-box { background: rgba(255, 255, 255, 0.55); padding: 0.9rem; border-radius: 22px; box-shadow: 0 8px 20px rgba(27, 36, 32, 0.06); flex-shrink: 0; }
+    .hero-logo-box svg { width: 105px; height: 105px; display: block; }
+    .hero-content h2 { font-size: 2rem; letter-spacing: 0.04em; color: var(--ink); margin-bottom: 0.2rem; }
+    .hero-tagline { font-size: 0.85rem; letter-spacing: 0.28em; font-weight: 700; color: #2E4239; margin-bottom: 0.85rem; display: inline-block; }
+    .hero-content p { color: #273830; font-size: 1rem; max-width: 560px; }
+
+    .section-heading { font-size: 1.2rem; color: var(--ink); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+
+    .levels-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-bottom: 2rem; }
+    @media (max-width: 860px) {
+      .levels-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-banner { flex-direction: column; text-align: center; padding: 1.8rem; }
+    }
+    @media (max-width: 500px) { .levels-grid { grid-template-columns: 1fr; } }
+
+    .level-card {
+      background: var(--card); border: 1.5px solid var(--border); border-radius: 18px; padding: 1.6rem 1.4rem;
+      text-align: left; cursor: pointer; transition: all 0.22s ease; display: flex; flex-direction: column;
+      justify-content: space-between; position: relative; overflow: hidden;
+    }
+    .level-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--sky); opacity: 0.85; }
+    .level-card[data-level="A1"]::before { background: #64C29A; }
+    .level-card[data-level="A2"]::before { background: var(--sky); }
+    .level-card[data-level="B1"]::before { background: #3B7AD8; }
+    .level-card[data-level="B2"]::before { background: #6B5CE7; }
+    .level-card:hover { border-color: var(--sky); transform: translateY(-5px); box-shadow: 0 14px 28px rgba(59, 158, 216, 0.12); }
+
+    .level-badge {
+      display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px;
+      border-radius: 14px; font-family: 'Quicksand', sans-serif; font-size: 1.45rem; font-weight: 700;
+      background: var(--sky-light); color: var(--sky-dark); margin-bottom: 1rem;
+    }
+    .level-card[data-level="A1"] .level-badge { background: var(--mint-light); color: #1F6E4A; }
+    .level-card[data-level="B1"] .level-badge { background: #EBF1FC; color: #2B59A8; }
+    .level-card[data-level="B2"] .level-badge { background: #F0EEFC; color: #4E40B8; }
+    .level-card h3 { font-size: 1.15rem; margin-bottom: 0.35rem; }
+    .level-card p { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.1rem; }
+    .level-cta { font-size: 0.85rem; font-weight: 700; color: var(--sky-dark); }
+
+    .toefl-card {
+      background: linear-gradient(120deg, #FFFFFF 0%, #F4FAFD 65%, #FDF2F7 100%);
+      border: 1.5px solid #CFE3EE; border-radius: 20px; padding: 1.8rem 2rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1.5rem;
+      cursor: pointer; transition: all 0.22s ease; box-shadow: 0 6px 20px rgba(27, 36, 32, 0.04);
+    }
+    .toefl-card:hover { border-color: var(--magenta); transform: translateY(-3px); box-shadow: 0 14px 30px rgba(232, 53, 140, 0.1); }
+    .toefl-left { display: flex; align-items: center; gap: 1.4rem; }
+    .toefl-icon {
+      width: 68px; height: 68px; border-radius: 16px; background: linear-gradient(135deg, var(--sky) 0%, var(--magenta) 100%);
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 1.1rem; flex-shrink: 0;
+      box-shadow: 0 6px 14px rgba(232, 53, 140, 0.22);
+    }
+    .toefl-pill {
+      display: inline-block; background: var(--magenta-light); color: #B81D69; font-size: 0.75rem;
+      font-weight: 700; padding: 0.2rem 0.65rem; border-radius: 999px; margin-bottom: 0.35rem; letter-spacing: 0.04em;
+    }
+    .toefl-card h3 { font-size: 1.3rem; margin-bottom: 0.25rem; }
+    .toefl-card p { color: var(--muted); font-size: 0.92rem; max-width: 560px; }
+    @media (max-width: 700px) {
+      .toefl-card { flex-direction: column; align-items: flex-start; }
+      .toefl-left { flex-direction: column; align-items: flex-start; }
+    }
+
+    .btn {
+      background: var(--sky); color: white; border: none; padding: 0.72rem 1.45rem; border-radius: 10px;
+      cursor: pointer; font-size: 0.95rem; font-weight: 600; transition: all 0.2s; white-space: nowrap;
+    }
+    .btn:hover { background: var(--sky-dark); transform: translateY(-1px); }
+    .btn:active { transform: scale(0.98); }
+    .btn-toefl { background: var(--magenta); }
+    .btn-toefl:hover { background: #CC2375; }
+    .btn-secondary { background: white; color: var(--ink); border: 1.5px solid var(--border); }
+    .btn-secondary:hover { background: var(--mint-light); border-color: var(--mint-border); }
+
+    .nav-bar { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.3rem; flex-wrap: wrap; }
+    .topic-jump-bar {
+      display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.8rem; padding: 1rem;
+      background: white; border: 1px solid var(--border); border-radius: 14px;
+    }
+    .topic-jump-chip {
+      font-size: 0.8rem; font-weight: 600; padding: 0.35rem 0.75rem; border-radius: 999px;
+      background: var(--mint-light); color: var(--ink); border: 1px solid var(--mint-border); cursor: pointer; transition: all 0.15s;
+    }
+    .topic-jump-chip:hover { background: var(--sky-light); border-color: var(--sky); color: var(--sky-dark); }
+
+    .topic-group { margin-bottom: 2rem; scroll-margin-top: 85px; }
+    .topic-header {
+      display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.85rem; padding-bottom: 0.45rem;
+      border-bottom: 2px solid var(--mint-border); font-size: 1.18rem; color: var(--ink);
+    }
+    .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+    .exercise-list { display: grid; gap: 1rem; }
+
+    .exercise-item {
+      background: var(--card); border: 1.5px solid var(--border); border-radius: 16px; padding: 1.25rem 1.4rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; transition: all 0.2s;
+    }
+    .exercise-item:hover { border-color: var(--sky); box-shadow: 0 8px 20px rgba(59, 158, 216, 0.08); transform: translateY(-2px); }
+    .exercise-tag {
+      font-size: 0.74rem; padding: 0.22rem 0.68rem; border-radius: 20px; background: var(--sky-light);
+      color: var(--sky-dark); font-weight: 700; display: inline-block; margin-bottom: 0.35rem;
+    }
+
+    .quiz-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 20px; padding: 2.2rem; box-shadow: 0 10px 28px rgba(27, 36, 32, 0.04); }
+    .progress-wrapper { margin-bottom: 1.5rem; }
+    .progress-text { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.45rem; font-weight: 600; display: flex; justify-content: space-between; }
+    .progress-track { height: 8px; background: var(--mint-light); border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--sky) 0%, var(--magenta) 100%); border-radius: 999px; transition: width 0.3s ease; }
+
+    .reading-passage {
+      background: var(--mint-light); border-left: 4px solid var(--sky); padding: 1.15rem 1.35rem;
+      border-radius: 0 12px 12px 0; margin-bottom: 1.5rem; font-size: 0.97rem; color: var(--ink); white-space: pre-line;
+    }
+    .reading-label {
+      display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--sky-dark); margin-bottom: 0.35rem;
+    }
+
+    .question-title { font-size: 1.2rem; margin-bottom: 1.4rem; color: var(--ink); }
+    .options-grid { display: grid; gap: 0.85rem; }
+    .option-btn {
+      text-align: left; padding: 1rem 1.2rem; border: 1.5px solid var(--border); background: white;
+      border-radius: 12px; font-size: 1rem; cursor: pointer; transition: all 0.15s; color: var(--ink);
+    }
+    .option-btn:hover:not(:disabled) { border-color: var(--sky); background: var(--sky-light); }
+    .option-btn.correct { border-color: var(--success); background: var(--success-bg); color: #065F46; font-weight: 600; }
+    .option-btn.wrong { border-color: var(--error); background: var(--error-bg); color: #991B1B; }
+
+    .fill-sentence { font-size: 1.2rem; line-height: 2.4; margin-bottom: 1.5rem; }
+    .blank-input {
+      border: none; border-bottom: 2.5px solid var(--sky); background: var(--sky-light); padding: 0.2rem 0.65rem;
+      margin: 0 0.2rem; font-size: 1.06rem; width: 155px; text-align: center; border-radius: 6px 6px 0 0;
+      outline: none; font-weight: 600; color: var(--ink);
+    }
+    .blank-input.correct { border-color: var(--success); background: var(--success-bg); }
+    .blank-input.wrong { border-color: var(--error); background: var(--error-bg); }
+
+    .matching-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .match-col { display: flex; flex-direction: column; gap: 0.75rem; }
+    .match-item {
+      padding: 0.95rem; border: 1.5px solid var(--border); border-radius: 12px; background: white;
+      cursor: pointer; text-align: center; font-weight: 600; transition: all 0.15s;
+    }
+    .match-item:hover:not(.matched) { border-color: var(--sky); }
+    .match-item.selected { border-color: var(--sky); background: var(--sky-light); color: var(--sky-dark); }
+    .match-item.matched { border-color: var(--success); background: var(--success-bg); color: #065F46; cursor: default; opacity: 0.85; }
+    .match-item.wrong { border-color: var(--error); background: var(--error-bg); }
+
+    .answer-box {
+      min-height: 64px; border: 2px dashed var(--mint-border); border-radius: 12px; padding: 0.85rem;
+      display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 1.2rem; background: var(--mint-light);
+    }
+    .word-bank { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 1.5rem; }
+    .word-chip {
+      padding: 0.5rem 0.95rem; background: white; border: 1.5px solid var(--border);
+      border-bottom: 3px solid #C5D4CC; border-radius: 10px; cursor: pointer; font-weight: 600; user-select: none;
+    }
+    .word-chip:hover { background: var(--sky-light); border-color: var(--sky); }
+
+    .feedback-box { margin-top: 1.2rem; padding: 1rem 1.2rem; border-radius: 12px; font-weight: 500; }
+    .feedback-box.success { background: var(--success-bg); color: #065F46; }
+    .feedback-box.error { background: var(--error-bg); color: #991B1B; }
+    .quiz-actions { margin-top: 1.6rem; display: flex; justify-content: flex-end; gap: 1rem; }
+
+    footer { text-align: center; padding: 1.5rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); background: white; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand-lockup" onclick="goHome()">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-label="Living English Logo">
+          <rect width="120" height="120" rx="24" fill="#B6D7C2"/>
+          <path d="M44,102 L44,85 C35,77 34,63 38,51 C41,42 50,38 61,38 C73,38 80,45 82,56 L87,64 L82,66 L82,72 L80,74 L80,79 C80,83 75,85 69,85 L69,102 Z" fill="#4BAEE3"/>
+          <path d="M38,44 L38,52 Q58,59 76,47 L76,40 Z" fill="#3692C9"/>
+          <path d="M18,41 L64,21 L100,32 L54,51 Z" fill="#5DBBF0"/>
+          <line x1="28" y1="39" x2="28" y2="67" stroke="#5DBBF0" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="28" cy="68" r="3.2" fill="#4BAEE3"/>
+          <path d="M24.5,72 L31.5,72 L33.5,82 L22.5,82 Z" fill="#5DBBF0"/>
+          <path d="M43,58 C43,49 50,43 60,43 C69,43 76,49 76,58 C76,66 69,71 60,71 C57,71 54,70 51,69 L45,75 L47,67 C44,65 43,61 43,58 Z" fill="#FFFFFF"/>
+          <circle cx="51" cy="58" r="3.3" fill="#E8358C"/>
+          <circle cx="60" cy="58" r="3.3" fill="#E8358C"/>
+          <circle cx="69" cy="58" r="3.3" fill="#E8358C"/>
+        </svg>
+        <div class="brand-text-group">
+          <span class="brand-title">LIVING ENGLISH</span>
+          <span class="brand-sub">LEARN WITH JOY</span>
+        </div>
+      </div>
+      <div class="header-pill" id="header-badge">Inicio</div>
+    </div>
+  </header>
+
+  <main>
+    <section id="view-home" class="fade-in">
+      <div class="hero-banner">
+        <div class="hero-logo-box">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="120" rx="22" fill="#B6D7C2"/>
+            <path d="M44,102 L44,85 C35,77 34,63 38,51 C41,42 50,38 61,38 C73,38 80,45 82,56 L87,64 L82,66 L82,72 L80,74 L80,79 C80,83 75,85 69,85 L69,102 Z" fill="#4BAEE3"/>
+            <path d="M38,44 L38,52 Q58,59 76,47 L76,40 Z" fill="#3692C9"/>
+            <path d="M18,41 L64,21 L100,32 L54,51 Z" fill="#5DBBF0"/>
+            <line x1="28" y1="39" x2="28" y2="67" stroke="#5DBBF0" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="28" cy="68" r="3.2" fill="#4BAEE3"/>
+            <path d="M24.5,72 L31.5,72 L33.5,82 L22.5,82 Z" fill="#5DBBF0"/>
+            <path d="M43,58 C43,49 50,43 60,43 C69,43 76,49 76,58 C76,66 69,71 60,71 C57,71 54,70 51,69 L45,75 L47,67 C44,65 43,61 43,58 Z" fill="#FFFFFF"/>
+            <circle cx="51" cy="58" r="3.3" fill="#E8358C"/>
+            <circle cx="60" cy="58" r="3.3" fill="#E8358C"/>
+            <circle cx="69" cy="58" r="3.3" fill="#E8358C"/>
+          </svg>
+        </div>
+        <div class="hero-content">
+          <h2>LIVING ENGLISH</h2>
+          <span class="hero-tagline">LEARN WITH JOY</span>
+          <p>Practica inglés a tu ritmo con ejercicios interactivos diseñados para cada etapa de tu aprendizaje, desde nivel A1 hasta preparación TOEFL.</p>
+        </div>
+      </div>
+
+      <h3 class="section-heading">📚 Niveles Generales (A1 – B2)</h3>
+      <div class="levels-grid">
+        <div class="level-card" data-level="A1" onclick="selectLevel('A1')">
+          <div>
+            <div class="level-badge">A1</div>
+            <h3>Principiante</h3>
+            <p>10 temas: Verb To Be, Present Simple, Possessive 's, There is/are y más.</p>
+          </div>
+          <span class="level-cta" id="cta-A1">Ver ejercicios →</span>
+        </div>
+
+        <div class="level-card" data-level="A2" onclick="selectLevel('A2')">
+          <div>
+            <div class="level-badge">A2</div>
+            <h3>Elemental</h3>
+            <p>18 temas: Past Simple, Going to, Will, Modales, Comparativos, Used to y más.</p>
+          </div>
+          <span class="level-cta" id="cta-A2">Ver ejercicios →</span>
+        </div>
+
+        <div class="level-card" data-level="B1" onclick="selectLevel('B1')">
+          <div>
+            <div class="level-badge">B1</div>
+            <h3>Intermedio</h3>
+            <p>19 temas: Present Perfect, Conditionals, Passive Voice, Reported Speech y más.</p>
+          </div>
+          <span class="level-cta" id="cta-B1">Ver ejercicios →</span>
+        </div>
+
+        <div class="level-card" data-level="B2" onclick="selectLevel('B2')">
+          <div>
+            <div class="level-badge">B2</div>
+            <h3>Intermedio Alto</h3>
+            <p>19 temas: Past Perfect, Mixed Conditionals, Causative, Inversion y más.</p>
+          </div>
+          <span class="level-cta" id="cta-B2">Ver ejercicios →</span>
+        </div>
+      </div>
+
+      <h3 class="section-heading">🎓 Certificación Internacional</h3>
+      <div class="toefl-card" onclick="selectLevel('TOEFL')">
+        <div class="toefl-left">
+          <div class="toefl-icon"><span>TOEFL</span></div>
+          <div>
+            <span class="toefl-pill">READING &amp; GRAMMAR</span>
+            <h3>Ejercicios estilo TOEFL</h3>
+            <p id="toefl-desc">Complete the Words, Read in Daily Life, Academic Passages, Build a Sentence, Structure, Error Identification, Word Forms y Cloze.</p>
+          </div>
+        </div>
+        <button class="btn btn-toefl" id="cta-TOEFL">Entrar a TOEFL →</button>
+      </div>
+    </section>
+
+    <section id="view-menu" class="hidden fade-in">
+      <div class="nav-bar">
+        <button class="btn btn-secondary" onclick="goHome()">← Inicio</button>
+        <h2 id="menu-title">Ejercicios</h2>
+      </div>
+      <div id="topic-jump-bar" class="topic-jump-bar hidden"></div>
+      <div id="exercise-list"></div>
+    </section>
+
+    <section id="view-exercise" class="hidden fade-in">
+      <div class="nav-bar">
+        <button class="btn btn-secondary" onclick="backToMenu()">← Menú</button>
+        <h2 id="exercise-title">Título del ejercicio</h2>
+      </div>
+      <div class="quiz-card" id="quiz-container"></div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Living English</strong> · Learn With Joy · Plataforma interactiva de práctica
+  </footer>
+
+  <script>
+    // Constructores compactos para mantener el banco de datos limpio y ligero
+    const mc = (p, o, a, e = "") => ({ prompt: p, options: o, answer: a, explanation: e });
+    const tf = (p, a, e = "") => ({ prompt: p, options: ["Verdadero", "Falso"], answer: a, explanation: e });
+    const fb = (s, a, e = "") => ({ sentence: s, answer: a, explanation: e });
+    const sc = (t, s, p = "") => ({ tokens: t, sentence: s, prompt: p });
+    const qEx = (id, topic, title, type, typeLabel, description, questions, passage = "") =>
+      ({ id, topic, title, type, typeLabel, description, questions, passage });
+
+    const exercisesDB = {
+      // ==========================================
+      // NIVEL A1 (10 TEMAS · 20 EJERCICIOS)
+      // ==========================================
+      A1: [
+        qEx("a1-1a", "1. Verb To Be", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta (am / is / are).", [
+          mc("She ___ not my sister.", ["am", "is", "are"], "is", "Con 'She' usamos 'is'."),
+          mc("___ they from Mexico?", ["Is", "Are", "Am"], "Are", "Para preguntar con 'they' usamos 'Are'."),
+          mc("I ___ a student.", ["am", "is", "are"], "am", "Con 'I' siempre usamos 'am'."),
+          mc("My parents ___ at home.", ["is", "am", "are"], "are", "'My parents' es plural (they) → 'are'."),
+          mc("___ he your teacher?", ["Is", "Are", "Am"], "Is", "Para preguntar con 'he' usamos 'Is'.")
+        ]),
+        qEx("a1-1b", "1. Verb To Be", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta entre las dos opciones.", [
+          mc("We ___ tired.", ["aren't", "isn't"], "aren't", "Con 'We' usamos 'aren't'."),
+          mc("___ I late?", ["Am", "Is"], "Am", "Con 'I' la forma correcta es 'Am'."),
+          mc("It ___ a nice day.", ["is", "are"], "is", "Con 'It' usamos 'is'."),
+          mc("You ___ alone.", ["isn't", "aren't"], "aren't", "Con 'You' usamos 'aren't'."),
+          mc("___ Maria and Ana in class?", ["Is", "Are"], "Are", "'Maria and Ana' es plural → 'Are'.")
+        ]),
+
+        qEx("a1-2a", "2. Demonstratives", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe this, that, these o those según corresponda.", [
+          fb("___ is my book. (un libro cerca de mí)", "This", "Singular y cerca = This."),
+          fb("___ are my shoes. (varios, cerca)", "These", "Plural y cerca = These."),
+          fb("Is ___ your car? (un coche lejos)", "that", "Singular y lejos = that."),
+          fb("___ aren't my keys. (varias, lejos)", "Those", "Plural y lejos = Those."),
+          fb("What's ___ in your hand? (algo cerca)", "this", "Singular y cerca = this.")
+        ]),
+        qEx("a1-2b", "2. Demonstratives", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf('Señalas un lápiz cerca: "This is a pencil."', "Verdadero", "Un objeto cerca usa 'This is'."),
+          tf('Señalas tres coches lejos: "That are cars."', "Falso", "Forma correcta: 'Those are cars.'"),
+          tf('Señalas dos zapatos cerca: "These are my shoes."', "Verdadero", "Varios objetos cerca usan 'These are'."),
+          tf('Señalas una casa lejos: "Is this your house?"', "Falso", "Forma correcta: 'Is that your house?'"),
+          tf('Señalas unas llaves lejos: "Those aren\'t my keys."', "Verdadero", "Varios objetos lejos usan 'Those'.")
+        ]),
+
+        qEx("a1-3a", "3. Present Simple", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["I", "work", "every day"], "I work every day."),
+          sc(["she", "doesn't", "coffee", "drink"], "She doesn't drink coffee."),
+          sc(["you", "do", "like", "pizza", "?"], "Do you like pizza?"),
+          sc(["they", "don't", "live", "here"], "They don't live here."),
+          sc(["does", "he", "play", "football", "?"], "Does he play football?")
+        ]),
+        qEx("a1-3b", "3. Present Simple", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta en Present Simple.", [
+          mc("He ___ in a bank.", ["work", "works", "working"], "works", "En tercera persona singular agregamos '-s'."),
+          mc("They ___ TV at night.", ["doesn't watch", "don't watch", "not watch"], "don't watch", "Con 'they' negamos con 'don't'."),
+          mc("___ she speak English?", ["Do", "Does", "Is"], "Does", "Para preguntar con 'she' usamos 'Does'."),
+          mc("I ___ meat.", ["doesn't eat", "don't eat", "not eat"], "don't eat", "Con 'I' negamos con 'don't'."),
+          mc("We ___ at 7:00.", ["wakes up", "wake up", "wakes"], "wake up", "Con 'we' el verbo va en forma base.")
+        ]),
+
+        qEx("a1-4a", "4. Object Pronouns", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige el pronombre correcto.", [
+          mc("I like Ana. I see ___ every day.", ["she", "her"], "her", "Después del verbo usamos 'her'."),
+          mc("This is Tom. Do you know ___?", ["he", "him"], "him", "Tom como objeto = 'him'."),
+          mc("Please help ___.", ["I", "me"], "me", "Pronombre objeto de 'I' = 'me'."),
+          mc("My parents are great. We love ___.", ["they", "them"], "them", "Pronombre objeto de 'they' = 'them'."),
+          mc("Where is the dog? I can't find ___.", ["it", "its"], "it", "Pronombre objeto para animal/cosa = 'it'.")
+        ]),
+        qEx("a1-4b", "4. Object Pronouns", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el pronombre objeto correcto.", [
+          fb("Carlos is my friend. I call ___ every day.", "him", "Carlos = him."),
+          fb("Maria is here. Can you see ___?", "her", "Maria = her."),
+          fb("We are late. Wait for ___!", "us", "We = us."),
+          fb("These are my keys. Don't touch ___!", "them", "My keys (plural) = them."),
+          fb("I love this song. Do you like ___?", "it", "This song = it.")
+        ]),
+
+        qEx("a1-5a", "5. Possessive Adjectives", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf('"She loves her job."', "Verdadero"),
+          tf('"I like you dog."', "Falso", 'Forma correcta: "I like your dog."'),
+          tf('"They don\'t know their teacher."', "Verdadero"),
+          tf('"Is this he car?"', "Falso", 'Forma correcta: "Is this his car?"'),
+          tf('"We love our city."', "Verdadero")
+        ]),
+        qEx("a1-5b", "5. Possessive Adjectives", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["is", "name", "my", "Ana"], "My name is Ana."),
+          sc(["his", "isn't", "this", "book"], "This isn't his book."),
+          sc(["your", "what", "is", "phone number", "?"], "What is your phone number?"),
+          sc(["they", "their", "love", "dog"], "They love their dog."),
+          sc(["our", "is", "house", "big"], "Our house is big.")
+        ]),
+
+        qEx("a1-6a", "6. Singular and Plural", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el plural correcto.", [
+          fb("one box - two ___", "boxes", "Termina en -x → añade '-es'."),
+          fb("one child - three ___", "children", "Plural irregular: children."),
+          fb("one city - five ___", "cities", "Consonante + 'y' → '-ies'."),
+          fb("one man - two ___", "men", "Plural irregular: men."),
+          fb("one watch - two ___", "watches", "Termina en -ch → añade '-es'.")
+        ]),
+        qEx("a1-6b", "6. Singular and Plural", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee el texto y contesta.", [
+          mc("How many children does the writer have?", ["one", "two", "three"], "two"),
+          mc("How many boxes of strawberries do they buy?", ["two", "three", "four"], "three"),
+          tf("There are only men in the market.", "Falso", "Hay hombres, mujeres y niños."),
+          tf('"Tomatoes" is singular.', "Falso", "Es plural (singular: tomato)."),
+          mc("What does the daughter love?", ["the tomatoes", "the strawberries", "the cake"], "the cake")
+        ], "Today is Saturday. My two children and I are at the market. We buy four tomatoes, three boxes of strawberries and one cake. There are many people in the market: men, women and children. My daughter loves the cake."),
+
+        qEx("a1-7a", "7. WH Questions", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la pregunta.", [
+          sc(["is", "where", "the bathroom", "?"], "Where is the bathroom?"),
+          sc(["do", "what", "you", "want", "?"], "What do you want?"),
+          sc(["she", "does", "live", "where", "?"], "Where does she live?"),
+          sc(["old", "how", "are", "you", "?"], "How old are you?"),
+          sc(["when", "the class", "does", "start", "?"], "When does the class start?")
+        ]),
+        qEx("a1-7b", "7. WH Questions", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la palabra interrogativa correcta.", [
+          mc("___ is your birthday?", ["Where", "When", "Who"], "When"),
+          mc("___ is that man? He's my uncle.", ["What", "Where", "Who"], "Who"),
+          mc("___ do you live? In Puebla.", ["Why", "Where", "When"], "Where"),
+          mc("___ is this shirt? It's 200 pesos.", ["How much", "How many", "What"], "How much"),
+          mc("___ does he like? He likes music.", ["Who", "What", "Why"], "What")
+        ]),
+
+        qEx("a1-8a", "8. Present Continuous", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee el texto y contesta.", [
+          mc("Who is cooking?", ["mother", "father", "brother"], "father"),
+          tf("The mother is cooking.", "Falso", "Está leyendo una revista."),
+          tf("The dog is sleeping.", "Verdadero"),
+          mc("What are the brother and the writer doing?", ["doing homework", "playing video games", "reading"], "playing video games"),
+          tf("They are doing homework.", "Falso", "El texto dice: \"We aren't doing homework today.\"")
+        ], "It is Sunday afternoon. My family is at home. My father is cooking in the kitchen. My mother isn't cooking; she is reading a magazine. My brother and I are playing video games. We aren't doing homework today. Our dog is sleeping on the sofa."),
+        qEx("a1-8b", "8. Present Continuous", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("She ___ studying now.", ["is", "are"], "is"),
+          mc("They ___ working today.", ["isn't", "aren't"], "aren't"),
+          mc("___ you listening?", ["Is", "Are"], "Are"),
+          mc("I ___ sleeping.", ["am not", "isn't"], "am not"),
+          mc("What ___ he doing?", ["is", "are"], "is")
+        ]),
+
+        qEx("a1-9a", "9. Possessive 's y Possessive Adjectives", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("This is ___ bag.", ["Maria's", "Maria"], "Maria's"),
+          mc("___ brother is a doctor.", ["Her", "She"], "Her"),
+          mc("Where is ___ phone?", ["Tom's", "Tom"], "Tom's"),
+          mc("Is this ___ pencil?", ["you", "your"], "your"),
+          mc("That isn't ___ car.", ["his", "him"], "his")
+        ]),
+        qEx("a1-9b", "9. Possessive 's y Possessive Adjectives", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe la palabra correcta.", [
+          fb("That is the house of my uncle. = That is my ___ house.", "uncle's"),
+          fb("We love ___ teacher. (de nosotros)", "our"),
+          fb("Is this ___ phone? (de Ana)", "Ana's"),
+          fb("They don't like ___ school. (de ellos)", "their"),
+          fb("I love ___ new job. (mío)", "my")
+        ]),
+
+        qEx("a1-10a", "10. There is / There are", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("___ a bank near here.", ["There is", "There are", "It is"], "There is"),
+          mc("___ two chairs in the room.", ["There is", "There are", "They are"], "There are"),
+          mc("There ___ any milk.", ["isn't", "aren't", "not"], "isn't"),
+          mc("___ there a park in your city?", ["Is", "Are", "Does"], "Is"),
+          mc("___ there any students?", ["Is", "Are", "Do"], "Are")
+        ]),
+        qEx("a1-10b", "10. There is / There are", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“There is three books on the table.”", "Falso", "Forma correcta: There are three books."),
+          tf("“There are some apples in the bag.”", "Verdadero"),
+          tf("“There isn't a hospital here.”", "Verdadero"),
+          tf("“Are there a pharmacy?”", "Falso", "Forma correcta: Is there a pharmacy?"),
+          tf("“There aren't any cars.”", "Verdadero")
+        ])
+      ],
+
+      // ==========================================
+      // NIVEL A2 (18 TEMAS · 37 EJERCICIOS)
+      // ==========================================
+      A2: [
+        qEx("a2-1a", "1. Verb To Be en pasado", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige was / were.", [
+          mc("I ___ at home yesterday.", ["was", "were", "am"], "was"),
+          mc("They ___ not happy.", ["was", "were", "is"], "were"),
+          mc("___ she at school last week?", ["Was", "Were", "Is"], "Was"),
+          mc("We ___ tired after the trip.", ["was", "were", "are"], "were"),
+          mc("___ you late?", ["Was", "Were", "Did"], "Were")
+        ]),
+        qEx("a2-1b", "1. Verb To Be en pasado", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("It ___ a great party.", ["was", "were"], "was"),
+          mc("You ___ in class.", ["wasn't", "weren't"], "weren't"),
+          mc("___ Pedro and Luis at the park?", ["Was", "Were"], "Were"),
+          mc("I ___ hungry.", ["wasn't", "weren't"], "wasn't"),
+          mc("Where ___ your keys?", ["was", "were"], "were")
+        ]),
+
+        qEx("a2-2a", "2. Present Continuous", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el verbo en Present Continuous.", [
+          fb("She ___ (watch) TV now.", "is watching"),
+          fb("They ___ (not play) football today.", "aren't playing"),
+          fb("___ you ___ (study) English?", ["Are", "studying"]),
+          fb("I ___ (cook) dinner.", "am cooking"),
+          fb("What ___ he ___ (do)?", ["is", "doing"])
+        ]),
+        qEx("a2-2b", "2. Present Continuous", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["is", "raining", "it", "now"], "It is raining now."),
+          sc(["aren't", "we", "working", "today"], "We aren't working today."),
+          sc(["are", "what", "you", "doing", "?"], "What are you doing?"),
+          sc(["she", "is", "reading", "a book"], "She is reading a book."),
+          sc(["he", "sleeping", "isn't"], "He isn't sleeping.")
+        ]),
+
+        qEx("a2-3a", "3. In / On / At", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la preposición correcta.", [
+          mc("I wake up ___ 6:00.", ["in", "on", "at"], "at"),
+          mc("My birthday is ___ May.", ["in", "on", "at"], "in"),
+          mc("The meeting is ___ Monday.", ["in", "on", "at"], "on"),
+          mc("She lives ___ Mexico City.", ["in", "on", "at"], "in"),
+          mc("We eat dinner ___ night.", ["in", "on", "at"], "at")
+        ]),
+        qEx("a2-3b", "3. In / On / At", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe in, on o at.", [
+          fb("The keys are ___ the table.", "on"),
+          fb("I'm ___ home now.", "at"),
+          fb("He works ___ a hospital.", "in"),
+          fb("The class starts ___ 8:30.", "at"),
+          fb("They travel ___ summer.", "in")
+        ]),
+
+        qEx("a2-4a", "4. Past Simple", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["I", "yesterday", "worked"], "I worked yesterday."),
+          sc(["didn't", "she", "the movie", "like"], "She didn't like the movie."),
+          sc(["you", "did", "where", "go", "?"], "Where did you go?"),
+          sc(["they", "bought", "a new car"], "They bought a new car."),
+          sc(["did", "he", "call", "you", "?"], "Did he call you?")
+        ]),
+        qEx("a2-4b", "4. Past Simple", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee el texto y contesta.", [
+          mc("Who did Ana visit?", ["her aunt", "her grandmother", "her friend"], "her grandmother"),
+          tf("Ana took a taxi.", "Falso", "Tomó un autobús (a bus)."),
+          mc("What did they do together?", ["played games", "cooked lunch", "went shopping"], "cooked lunch"),
+          tf("Ana watched TV.", "Falso"),
+          mc("When did she go home?", ["in the morning", "at noon", "in the evening"], "in the evening")
+        ], "Last Saturday, Ana visited her grandmother. She took a bus to the village and arrived at 10:00. They cooked lunch together and talked for hours. Ana didn't watch TV. In the evening, she went home and slept early."),
+        qEx("a2-4c", "4. Past Simple", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta en Past Simple.", [
+          mc("Yesterday, I ___ to the market.", ["go", "went", "goed"], "went"),
+          mc("He ___ English for two hours last night.", ["study", "studied", "studyed"], "studied"),
+          mc("She ___ TV last night; she read a book.", ["didn't watch", "doesn't watch", "didn't watched"], "didn't watch"),
+          mc("___ you see the game on Sunday?", ["Do", "Did", "Were"], "Did"),
+          mc("They ___ a new house last year.", ["buy", "buyed", "bought"], "bought")
+        ]),
+
+        qEx("a2-5a", "5. Conectores", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige and, but, because, so o when.", [
+          mc("I like tea, ___ I don't like coffee.", ["and", "but", "so"], "but"),
+          mc("She stayed home ___ she was sick.", ["so", "because", "but"], "because"),
+          mc("I was tired, ___ I went to bed early.", ["but", "so", "because"], "so"),
+          mc("Call me ___ you arrive.", ["when", "but", "so"], "when"),
+          mc("He plays guitar ___ sings.", ["but", "and", "because"], "and")
+        ]),
+        qEx("a2-5b", "5. Conectores", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe and, but, because, so o when.", [
+          fb("It was cold, ___ I wore a jacket.", "so"),
+          fb("I wanted to go out, ___ it was raining.", "but"),
+          fb("I'm happy ___ it's Friday.", "because"),
+          fb("She opened the door ___ the bell rang.", "when"),
+          fb("We bought bread ___ milk.", "and")
+        ]),
+
+        qEx("a2-6a", "6. Going to", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“I'm going to study tonight.”", "Verdadero"),
+          tf("“She going to travel next week.”", "Falso", "Forma correcta: She is going to travel."),
+          tf("“They aren't going to come.”", "Verdadero"),
+          tf("“Is they going to win?”", "Falso", "Forma correcta: Are they going to win?"),
+          tf("“He is going to plays football.”", "Falso", "Forma correcta: going to play.")
+        ]),
+        qEx("a2-6b", "6. Going to", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["going", "I", "to", "call", "am", "you"], "I am going to call you."),
+          sc(["isn't", "she", "to", "going", "come"], "She isn't going to come."),
+          sc(["you", "are", "what", "going", "to", "do", "?"], "What are you going to do?"),
+          sc(["going", "it", "rain", "to", "is"], "It is going to rain."),
+          sc(["are", "they", "going", "to", "win", "?"], "Are they going to win?")
+        ]),
+
+        qEx("a2-7a", "7. Will", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("I think it ___ rain tomorrow.", ["will", "is"], "will"),
+          mc("She ___ be late.", ["won't", "don't"], "won't"),
+          mc("___ you help me?", ["Will", "Do"], "Will"),
+          mc("We ___ call you later.", ["will", "are"], "will"),
+          mc("I ___ help you.", ["will", "will to"], "will")
+        ]),
+        qEx("a2-7b", "7. Will", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“I will go to the party.”", "Verdadero"),
+          tf("“She wills come tomorrow.”", "Falso", "Forma correcta: She will come."),
+          tf("“Will you be here tomorrow?”", "Verdadero"),
+          tf("“He won't to travel.”", "Falso", "Forma correcta: He won't travel."),
+          tf("“They will not pass the exam.”", "Verdadero")
+        ]),
+
+        qEx("a2-8a", "8. Modal Verbs básicos", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige el modal correcto.", [
+          mc("___ you swim? (habilidad)", ["Can", "Should", "May"], "Can"),
+          mc("When I was a child, I ___ run fast.", ["can", "could", "should"], "could"),
+          mc("You ___ see a doctor. (consejo)", ["can", "should", "may"], "should"),
+          mc("___ I come in? (permiso formal)", ["May", "Should", "Will"], "May"),
+          mc("It ___ rain tomorrow. (posibilidad)", ["should", "might", "can"], "might")
+        ]),
+        qEx("a2-8b", "8. Modal Verbs básicos", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“You should drink more water.”", "Verdadero"),
+          tf("“She can to dance.”", "Falso", "Forma correcta: She can dance."),
+          tf("“He cans swim.”", "Falso", "Forma correcta: He can swim."),
+          tf("“I couldn't open the door.”", "Verdadero"),
+          tf("“They might arrives late.”", "Falso", "Forma correcta: They might arrive late.")
+        ]),
+
+        qEx("a2-9a", "9. Comparatives", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el comparativo del adjetivo.", [
+          fb("My car is ___ than your car. (fast)", "faster"),
+          fb("This book is ___ than that one. (interesting)", "more interesting"),
+          fb("Today is ___ than yesterday. (hot)", "hotter"),
+          fb("English is ___ than math for me. (easy)", "easier"),
+          fb("Her house is ___ than mine. (big)", "bigger")
+        ]),
+        qEx("a2-9b", "9. Comparatives", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿El comparativo es correcto?", [
+          tf("“Today is colder than yesterday.”", "Verdadero"),
+          tf("“My brother is more tall than me.”", "Falso", "Forma correcta: taller."),
+          tf("“This test is gooder than the last one.”", "Falso", "Forma correcta: better."),
+          tf("“Is this exercise easier than that one?”", "Verdadero"),
+          tf("“She is more intelligent than him.”", "Verdadero")
+        ]),
+
+        qEx("a2-10a", "10. Superlatives", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee el texto y contesta.", [
+          mc("Who is the oldest?", ["grandfather", "Lupe", "Mario"], "grandfather"),
+          tf("Lupe is the oldest.", "Falso", "Lupe es la más joven."),
+          mc("Who is the tallest?", ["Lupe", "Mario", "mother"], "Mario"),
+          tf("The mother cooks the worst food.", "Falso", "Cocina la mejor comida (the best)."),
+          mc("How old is the grandfather?", ["12", "80", "18"], "80")
+        ], "My family is special. My grandfather is the oldest person in the family; he is 80. My sister Lupe is the youngest; she is 12. My brother Mario is the tallest and he is also the funniest. My mother cooks the best food in the world, and my house is the happiest place for me."),
+        qEx("a2-10b", "10. Superlatives", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma superlativa correcta.", [
+          mc("He is ___ boy in class.", ["taller", "the tallest"], "the tallest"),
+          mc("This is ___ pizza in town.", ["better", "the best"], "the best"),
+          mc("She is the ___ student.", ["more intelligent", "most intelligent"], "most intelligent"),
+          mc("It is the ___ day of the year.", ["hottest", "most hot"], "hottest"),
+          mc("That was the ___ movie.", ["worse", "worst"], "worst")
+        ]),
+
+        qEx("a2-11a", "11. Tag Questions", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("You are a teacher, ___?", ["aren't you", "don't you", "are you"], "aren't you"),
+          mc("She doesn't like fish, ___?", ["doesn't she", "does she", "is she"], "does she"),
+          mc("They went home, ___?", ["did they", "didn't they", "weren't they"], "didn't they"),
+          mc("He can swim, ___?", ["can he", "can't he", "doesn't he"], "can't he"),
+          mc("We aren't late, ___?", ["are we", "aren't we", "do we"], "are we")
+        ]),
+        qEx("a2-11b", "11. Tag Questions", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["it", "is", "nice", "isn't", "it"], "It is nice, isn't it?"),
+          sc(["you", "like", "coffee", "don't", "you"], "You like coffee, don't you?"),
+          sc(["she", "is", "tired", "isn't", "she"], "She is tired, isn't she?"),
+          sc(["they", "are", "not", "here", "are", "they"], "They are not here, are they?"),
+          sc(["he", "will", "come", "won't", "he"], "He will come, won't he?")
+        ]),
+
+        qEx("a2-12a", "12. Present Simple vs. Present Continuous", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("She ___ every day at a bank.", ["works", "is working"], "works"),
+          mc("Look! It ___.", ["rains", "is raining"], "is raining"),
+          mc("He ___ fish.", ["doesn't like", "isn't liking"], "doesn't like"),
+          mc("___ football on Sundays?", ["Do you play", "Are you playing"], "Do you play"),
+          mc("Be quiet! The baby ___.", ["sleeps", "is sleeping"], "is sleeping")
+        ]),
+        qEx("a2-12b", "12. Present Simple vs. Present Continuous", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("Right now, I ___ English.", ["study", "am studying", "studies"], "am studying"),
+          mc("My father ___ at 6:00 every day.", ["gets up", "is getting up", "get up"], "gets up"),
+          mc("___ she reading a book now?", ["Does", "Is", "Do"], "Is"),
+          mc("We ___ to the gym on Mondays.", ["aren't going", "don't go", "doesn't go"], "don't go"),
+          mc("Why ___ you talking so fast today?", ["do", "are", "is"], "are")
+        ]),
+
+        qEx("a2-13a", "13. Countable / Uncountable", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("I don't have ___ money.", ["many", "much", "an"], "much"),
+          mc("There aren't ___ chairs.", ["much", "many", "an"], "many"),
+          mc("Would you like ___ water?", ["some", "a", "many"], "some"),
+          mc("How ___ people are there?", ["much", "many", "any"], "many"),
+          mc("Do you have ___ brothers?", ["some", "any", "much"], "any")
+        ]),
+        qEx("a2-13b", "13. Countable / Uncountable", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe some, any, much, many o a lot of.", [
+          fb("There is ___ milk in the fridge.", "some"),
+          fb("We don't have ___ time.", "much"),
+          fb("Are there ___ tomatoes?", "any"),
+          fb("I have ___ friends. (muchos, afirmativa)", "a lot of"),
+          fb("How ___ sugar do you want?", "much")
+        ]),
+
+        qEx("a2-14a", "14. Have to / Don't have to", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe have to, has to, don't have to o doesn't have to.", [
+          fb("I ___ get up early tomorrow. (obligación)", "have to"),
+          fb("She ___ work on Sundays. (no es obligatorio)", "doesn't have to"),
+          fb("We ___ wear a uniform. (obligación)", "have to"),
+          fb("___ you ___ work tomorrow?", ["Do", "have to"]),
+          fb("He ___ pay. It's free.", "doesn't have to")
+        ]),
+        qEx("a2-14b", "14. Have to / Don't have to", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“She has to study tonight.”", "Verdadero"),
+          tf("“He have to go now.”", "Falso", "Forma correcta: He has to go."),
+          tf("“They don't has to come.”", "Falso", "Forma correcta: They don't have to come."),
+          tf("“Do we have to bring food?”", "Verdadero"),
+          tf("“I doesn't have to wait.”", "Falso", "Forma correcta: I don't have to wait.")
+        ]),
+
+        qEx("a2-15a", "15. Used to", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["I", "used", "to", "play", "football"], "I used to play football."),
+          sc(["she", "didn't", "use", "to", "like", "fish"], "She didn't use to like fish."),
+          sc(["did", "you", "use", "to", "live", "here", "?"], "Did you use to live here?"),
+          sc(["we", "used", "to", "walk", "to school"], "We used to walk to school."),
+          sc(["they", "used", "to", "be", "friends"], "They used to be friends.")
+        ]),
+        qEx("a2-15b", "15. Used to", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("I ___ to play with toys.", ["use", "used"], "used"),
+          mc("She ___ to eat vegetables.", ["didn't use", "didn't used"], "didn't use"),
+          mc("___ you use to live here?", ["Did", "Do"], "Did"),
+          mc("We ___ go to the beach every summer.", ["used to", "use to"], "used to"),
+          mc("My grandfather ___ tell us stories.", ["used to", "uses to"], "used to")
+        ]),
+
+        qEx("a2-16a", "16. Object Pronouns", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee el texto y contesta.", [
+          mc("Where did the writer meet Carlos?", ["at school", "at work", "at a party"], "at school"),
+          tf("Carlos likes the writer's sister.", "Verdadero"),
+          mc("Does the sister know it?", ["Yes, she does", "No, she doesn't"], "No, she doesn't"),
+          mc("What did the writer tell Carlos?", ["“Call me”", "“Talk to her!”", "“Forget her”"], "“Talk to her!”"),
+          mc("Who will get the tickets?", ["him", "them", "us"], "them")
+        ], "Carlos is my best friend. I met him at school. We see each other every week. Yesterday he called me and asked about my sister. He likes her, but she doesn't know it. I told him: “Talk to her!” Today we are going to the cinema with them: my sister and her friends. I will give them the tickets."),
+        qEx("a2-16b", "16. Object Pronouns", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el pronombre objeto correcto.", [
+          fb("Mr. Lopez is kind. Everybody likes ___.", "him"),
+          fb("Where are my keys? I can't find ___.", "them"),
+          fb("Ana and I are friends. She always helps ___.", "us"),
+          fb("I don't know that man. Do you know ___?", "him"),
+          fb("Please give ___ the bread. (a mí)", "me")
+        ]),
+
+        qEx("a2-17a", "17. Possessive Adjectives", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("The cat is eating ___ food.", ["its", "it's"], "its"),
+          mc("Ana and Luis love ___ house.", ["their", "there"], "their"),
+          mc("I forgot ___ umbrella.", ["my", "mine"], "my"),
+          mc("She and ___ brother are here.", ["her", "hers"], "her"),
+          mc("We are proud of ___ team.", ["our", "ours"], "our")
+        ]),
+        qEx("a2-17b", "17. Possessive Adjectives", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“The dog wagged it's tail.”", "Falso", "Forma correcta: its tail."),
+          tf("“Where are you parents?”", "Falso", "Forma correcta: your parents."),
+          tf("“They sold their car.”", "Verdadero"),
+          tf("“My sister and I love our grandmother.”", "Verdadero"),
+          tf("“Carlos lost her keys.”", "Falso", "Forma correcta: Carlos lost his keys.")
+        ]),
+
+        qEx("a2-18a", "18. Possessive Pronouns", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["is", "this", "mine", "book"], "This book is mine."),
+          sc(["is", "that", "car", "yours", "?"], "Is that car yours?"),
+          sc(["theirs", "isn't", "house", "this"], "This house isn't theirs."),
+          sc(["hers", "the", "blue", "bag", "is"], "The blue bag is hers."),
+          sc(["ours", "those", "are", "seats"], "Those seats are ours.")
+        ]),
+        qEx("a2-18b", "18. Possessive Pronouns", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige el pronombre posesivo correcto.", [
+          mc("This is not your pen. It's ___.", ["my", "mine", "me"], "mine"),
+          mc("Is this bag ___? (de ti)", ["your", "you", "yours"], "yours"),
+          mc("My house is big, but ___ is bigger. (de ellos)", ["their", "theirs", "them"], "theirs"),
+          mc("That coat is ___. (de ella)", ["hers", "her", "she"], "hers"),
+          mc("Our team is good. ___ is better. (de ustedes)", ["Your", "Yours", "You"], "Yours")
+        ])
+      ],
+
+      // ==========================================
+      // NIVEL B1 (19 TEMAS · 38 EJERCICIOS)
+      // ==========================================
+      B1: [
+        qEx("b1-1a", "1. Past Continuous", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("At 8 p.m. last night, I ___ TV.", ["was watching", "watched"], "was watching"),
+          mc("What ___ at 9:00 last night?", ["were you doing", "did you do"], "were you doing"),
+          mc("We ___ dinner when the lights went out.", ["were having", "had"], "were having"),
+          mc("___ you sleeping when I called?", ["Was", "Were"], "Were"),
+          mc("The kids ___ playing outside.", ["was", "were"], "were")
+        ]),
+        qEx("b1-1b", "1. Past Continuous", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el verbo en Past Continuous.", [
+          fb("I ___ (read) when you called.", "was reading"),
+          fb("They ___ (not listen) to the teacher.", "weren't listening"),
+          fb("What ___ she ___ (do) at 6:00?", ["was", "doing"]),
+          fb("___ you ___ (sleep) at midnight?", ["Were", "sleeping"]),
+          fb("It ___ (rain) when we left.", "was raining")
+        ]),
+
+        qEx("b1-2a", "2. Past Simple vs. Past Continuous", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee el texto y contesta.", [
+          mc("What was the writer doing when he saw the accident?", ["driving", "walking home", "riding a bike"], "walking home"),
+          tf("The cyclist was badly hurt.", "Falso"),
+          mc("What did the woman do?", ["called the police", "stopped and helped him", "left"], "stopped and helped him"),
+          tf("The ambulance arrived immediately.", "Falso", "Llegó diez minutos después."),
+          tf("The writer left before the police arrived.", "Falso")
+        ], "Last Friday, I was walking home from work when I saw an accident. A car hit a bike. The cyclist was lying on the road, but he wasn't badly hurt. While I was calling an ambulance, a woman stopped and helped him. The ambulance arrived ten minutes later. I felt nervous, but I stayed until the police came."),
+        qEx("b1-2b", "2. Past Simple vs. Past Continuous", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("I ___ dinner when the phone rang.", ["cooked", "was cooking", "cook"], "was cooking"),
+          mc("While we ___ TV, the power went off.", ["watched", "were watching", "watch"], "were watching"),
+          mc("He ___ his keys on the bus yesterday.", ["was losing", "lost", "loses"], "lost"),
+          mc("___ you doing your homework when I arrived?", ["Did", "Were", "Was"], "Were"),
+          mc("She ___ to school when she met her friend.", ["was walking", "walked", "walks"], "was walking")
+        ]),
+
+        qEx("b1-3a", "3. Present Perfect", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["I", "have", "never", "been", "to Canada"], "I have never been to Canada."),
+          sc(["she", "has", "finished", "her homework"], "She has finished her homework."),
+          sc(["you", "have", "ever", "eaten", "sushi", "?"], "Have you ever eaten sushi?"),
+          sc(["they", "haven't", "seen", "the movie"], "They haven't seen the movie."),
+          sc(["has", "he", "visited", "Paris", "?"], "Has he visited Paris?")
+        ]),
+        qEx("b1-3b", "3. Present Perfect", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("I ___ this song many times.", ["hear", "have heard", "heard"], "have heard"),
+          mc("___ you ever ridden a horse?", ["Did", "Have", "Do"], "Have"),
+          mc("He ___ his phone, so he can't call you.", ["has lost", "is losing", "loses"], "has lost"),
+          mc("We ___ lunch yet.", ["didn't have", "haven't had", "don't have"], "haven't had"),
+          mc("Maria ___ just arrived.", ["have", "has", "is"], "has")
+        ]),
+
+        qEx("b1-4a", "4. Present Perfect vs. Past Simple", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("I ___ London in 2019.", ["have visited", "visited"], "visited"),
+          mc("She ___ here since 2020.", ["has lived", "lived"], "has lived"),
+          mc("___ the new movie? (sin tiempo específico)", ["Have you seen", "Did you see"], "Have you seen"),
+          mc("We ___ last week.", ["have met", "met"], "met"),
+          mc("He ___ sushi.", ["has never tried", "never tried"], "has never tried")
+        ]),
+        qEx("b1-4b", "4. Present Perfect vs. Past Simple", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“I have seen him yesterday.”", "Falso", "Forma correcta: I saw him yesterday."),
+          tf("“She has worked here for five years.”", "Verdadero"),
+          tf("“Have you ever been to Peru?”", "Verdadero"),
+          tf("“They have bought a car last month.”", "Falso", "Forma correcta: They bought a car last month."),
+          tf("“He has broken his leg, so he can't play.”", "Verdadero")
+        ]),
+
+        qEx("b1-5a", "5. Still / Yet / Already", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe still, yet o already.", [
+          fb("Have you finished ___?", "yet"),
+          fb("I've ___ eaten, thanks.", "already"),
+          fb("She is ___ sleeping. It's noon!", "still"),
+          fb("They haven't arrived ___.", "yet"),
+          fb("He ___ lives with his parents.", "still")
+        ]),
+        qEx("b1-5b", "5. Still / Yet / Already", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["I", "haven't", "done", "yet", "it"], "I haven't done it yet."),
+          sc(["already", "she", "has", "left"], "She has already left."),
+          sc(["is", "he", "still", "sleeping"], "He is still sleeping."),
+          sc(["you", "have", "called", "yet", "her", "?"], "Have you called her yet?"),
+          sc(["we", "already", "have", "seen", "that movie"], "We have already seen that movie.")
+        ]),
+
+        qEx("b1-6a", "6. Will vs. Going to", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("Look at those clouds! It ___ rain.", ["will", "is going to", "won't"], "is going to"),
+          mc("I'm thirsty. I ___ get some water.", ["will", "am going to", "going"], "will"),
+          mc("We ___ visit my aunt next weekend; we bought the tickets.", ["will", "are going to", "won't"], "are going to"),
+          mc("Don't worry, I ___ help you.", ["am going to", "will", "going to"], "will"),
+          mc("___ you going to study tonight?", ["Will", "Are", "Do"], "Are")
+        ]),
+        qEx("b1-6b", "6. Will vs. Going to", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“I think it will be sunny tomorrow.”", "Verdadero"),
+          tf("“I've decided: I will to buy a car.”", "Falso", "Forma correcta: I'm going to buy a car."),
+          tf("“She is going to have a baby in May.”", "Verdadero"),
+          tf("“Will you to help me?”", "Falso", "Forma correcta: Will you help me?"),
+          tf("“Look out! The glass will fall!”", "Falso", "Forma correcta: Look out! The glass is going to fall!")
+        ]),
+
+        qEx("b1-7a", "7. Future time clauses", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("I'll call you when I ___.", ["arrive", "will arrive"], "arrive"),
+          mc("She will wait until he ___.", ["comes", "will come"], "comes"),
+          mc("As soon as we ___, we'll leave.", ["finish", "will finish"], "finish"),
+          mc("___ the meeting ends, I will send the report.", ["When", "Until"], "When"),
+          mc("They won't leave until it ___ raining.", ["stops", "will stop"], "stops")
+        ]),
+        qEx("b1-7b", "7. Future time clauses", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe los verbos en la forma correcta.", [
+          fb("When I ___ (get) home, I ___ (call) you.", ["get", "will call"]),
+          fb("I ___ (wait) here until you ___ (come) back.", ["will wait", "come"]),
+          fb("As soon as she ___ (arrive), we ___ (start).", ["arrives", "will start"]),
+          fb("We ___ (not go) out until it ___ (stop) raining.", ["won't go", "stops"]),
+          fb("He ___ (leave) as soon as the movie ___ (end).", ["will leave", "ends"])
+        ]),
+
+        qEx("b1-8a", "8. Gerunds & Infinitives", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("I enjoy ___ to music.", ["listen", "listening", "to listen"], "listening"),
+          mc("She wants ___ a new job.", ["finding", "find", "to find"], "to find"),
+          mc("He decided ___ the car.", ["selling", "to sell", "sell"], "to sell"),
+          mc("___ is good for your health.", ["Swim", "To swimming", "Swimming"], "Swimming"),
+          mc("They are good at ___ English.", ["speak", "speaking", "to speak"], "speaking")
+        ]),
+        qEx("b1-8b", "8. Gerunds & Infinitives", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el verbo en gerundio o infinitivo.", [
+          fb("I hope ___ you soon. (see)", "to see"),
+          fb("We finished ___ the report. (write)", "writing"),
+          fb("She doesn't want ___ late. (be)", "to be"),
+          fb("Do you mind ___ the window? (open)", "opening"),
+          fb("He promised ___ on time. (arrive)", "to arrive")
+        ]),
+
+        qEx("b1-9a", "9. Zero Conditional", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“If you heat ice, it melts.”", "Verdadero"),
+          tf("“If it will rain, the streets get wet.”", "Falso", "Forma correcta: If it rains."),
+          tf("“Water boils if you heat it to 100 degrees.”", "Verdadero"),
+          tf("“If I am tired, I sleeps early.”", "Falso", "Forma correcta: I sleep early."),
+          tf("“What happens if you mix red and blue?”", "Verdadero")
+        ]),
+        qEx("b1-9b", "9. Zero Conditional", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["you", "if", "heat", "ice", "it", "melts"], "If you heat ice, it melts."),
+          sc(["if", "I", "don't", "eat", "I", "get", "angry"], "If I don't eat, I get angry."),
+          sc(["plants", "die", "if", "they", "don't", "get", "water"], "Plants die if they don't get water."),
+          sc(["what", "happens", "if", "you", "mix", "oil and water", "?"], "What happens if you mix oil and water?"),
+          sc(["if", "it", "is", "cold", "I", "wear", "a jacket"], "If it is cold, I wear a jacket.")
+        ]),
+
+        qEx("b1-10a", "10. First Conditional", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee el texto y contesta.", [
+          mc("What happens if Mario studies hard?", ["he fails", "he passes", "he gets sick"], "he passes"),
+          mc("If he passes, his parents will give him ___", ["a phone", "a game", "money"], "a phone"),
+          tf("Mario will fail if he organizes his time.", "Falso", "Reprobará a menos que (unless) organice su tiempo."),
+          mc("His sister will help him as long as he ___", ["stops playing games at night", "plays more", "sleeps late"], "stops playing games at night"),
+          tf("Mario doesn't like video games.", "Falso")
+        ], "Mario has an important exam next week. If he studies hard, he will pass it. If he passes, his parents will give him a new phone. But Mario also loves video games. If he plays all night, he won't be able to study. Unless he organizes his time, he will fail. His sister says: “I will help you as long as you stop playing games at night.”"),
+        qEx("b1-10b", "10. First Conditional", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("If it ___ tomorrow, we will stay home.", ["rains", "will rain"], "rains"),
+          mc("She ___ you if she has time.", ["will call", "calls"], "will call"),
+          mc("___ you hurry, you will miss the bus.", ["Unless", "If"], "Unless"),
+          mc("I'll lend you the book as long as you ___ it.", ["return", "will return"], "return"),
+          mc("If he ___, he won't pass.", ["doesn't study", "won't study"], "doesn't study")
+        ]),
+
+        qEx("b1-11a", "11. Second Conditional", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("If I ___ more money, I would buy a house.", ["have", "had", "will have"], "had"),
+          mc("She would travel the world if she ___ rich.", ["were", "is", "will be"], "were"),
+          mc("What ___ you do if you won the lottery?", ["will", "would", "did"], "would"),
+          mc("If I ___ you, I wouldn't say that.", ["am", "were", "be"], "were"),
+          mc("He ___ so tired if he slept more.", ["won't be", "wouldn't be", "isn't"], "wouldn't be")
+        ]),
+        qEx("b1-11b", "11. Second Conditional", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["if", "I", "had", "time", "I", "would", "help", "you"], "If I had time, I would help you."),
+          sc(["would", "what", "you", "do", "if", "you", "were", "me", "?"], "What would you do if you were me?"),
+          sc(["she", "wouldn't", "go", "if", "it", "were", "dangerous"], "She wouldn't go if it were dangerous."),
+          sc(["if", "I", "lived", "in", "Spain", "I", "would", "speak", "Spanish"], "If I lived in Spain, I would speak Spanish."),
+          sc(["would", "he", "be", "happy", "if", "he", "got", "the job", "?"], "Would he be happy if he got the job?")
+        ]),
+
+        qEx("b1-12a", "12. Passive Voice simple", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el verbo en voz pasiva.", [
+          fb("English ___ (speak) in many countries.", "is spoken"),
+          fb("The window ___ (break) yesterday.", "was broken"),
+          fb("These cars ___ (make) in Mexico.", "are made"),
+          fb("The letters ___ (not send) last week.", "weren't sent"),
+          fb("___ the room ___ (clean) every day?", ["Is", "cleaned"])
+        ]),
+        qEx("b1-12b", "12. Passive Voice simple", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“The cake was baked by my mother.”", "Verdadero"),
+          tf("“The doors are close at 9:00.”", "Falso", "Forma correcta: are closed."),
+          tf("“The thief was caught by the police.”", "Verdadero"),
+          tf("“My bike was stole yesterday.”", "Falso", "Forma correcta: was stolen."),
+          tf("“Where were these photos taken?”", "Verdadero")
+        ]),
+
+        qEx("b1-13a", "13. Defining relative clauses", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige el pronombre relativo correcto.", [
+          mc("The man ___ lives next door is a doctor.", ["who", "which"], "who"),
+          mc("This is the book ___ I told you about.", ["who", "that"], "that"),
+          mc("The restaurant ___ we had dinner was great.", ["where", "who"], "where"),
+          mc("The phone ___ I bought is broken.", ["which", "who"], "which"),
+          mc("I know a place ___ you can buy cheap books.", ["where", "which"], "where")
+        ]),
+        qEx("b1-13b", "13. Defining relative clauses", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee el texto y contesta.", [
+          mc("Who is the neighbor?", ["a retired teacher", "a doctor", "a waiter"], "a retired teacher"),
+          tf("The neighbor loves cooking.", "Falso", "Le encanta la jardinería (gardening)."),
+          mc("Where do they meet on Sundays?", ["at a park", "at a café", "at school"], "at a café"),
+          tf("The coffee at the café is bad.", "Falso"),
+          mc("What does the owner give them?", ["a free cookie", "a free coffee", "a discount"], "a free cookie")
+        ], "I live in a small town where everybody knows each other. My neighbor, who is a retired teacher, loves gardening. The garden that she planted is the most beautiful in the street. There is also a café where we meet on Sundays. The coffee which they serve there is delicious, and the owner, who is very friendly, always gives us a free cookie."),
+
+        qEx("b1-14a", "14. Question tags avanzados", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige el tag correcto.", [
+          mc("Open the window, ___?", ["will you", "do you"], "will you"),
+          mc("Let's go to the cinema, ___?", ["shall we", "will we"], "shall we"),
+          mc("You have finished, ___?", ["haven't you", "don't you"], "haven't you"),
+          mc("She can swim, ___?", ["can't she", "doesn't she"], "can't she"),
+          mc("I am late, ___?", ["aren't I", "amn't I"], "aren't I")
+        ]),
+        qEx("b1-14b", "14. Question tags avanzados", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“Nobody called, did they?”", "Verdadero"),
+          tf("“Let's start, will we?”", "Falso", "Forma correcta: shall we?"),
+          tf("“They have left, have they?”", "Falso", "Forma correcta: haven't they?"),
+          tf("“You should rest, shouldn't you?”", "Verdadero"),
+          tf("“Don't forget, will you?”", "Verdadero")
+        ]),
+
+        qEx("b1-15a", "15. Phrasal verbs básicos", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe up, on, off, for o out.", [
+          fb("I wake ___ at 6:00 every day.", "up"),
+          fb("Please turn ___ the light. It's dark.", "on"),
+          fb("Don't forget to turn ___ the TV.", "off"),
+          fb("I'm looking ___ my keys.", "for"),
+          fb("Please fill ___ this form.", "out")
+        ]),
+        qEx("b1-15b", "15. Phrasal verbs básicos", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee el texto y contesta.", [
+          mc("What time does Laura get up?", ["6:00", "6:30", "7:30"], "6:30"),
+          tf("Laura always finds her keys quickly.", "Falso"),
+          mc("What does she do when she gets to work?", ["turns on her computer", "turns off the TV", "takes off her coat"], "turns on her computer"),
+          mc("In the evening, she takes off her ___", ["coat", "shoes", "keys"], "shoes"),
+          tf("Laura turns off the TV when she gets home.", "Falso")
+        ], "Every morning, Laura gets up at 6:30. She turns off the alarm, gets dressed and has breakfast. Then she looks for her keys, which she always loses. She puts on her coat and goes out. At work, she turns on her computer and starts working. In the evening, she takes off her shoes, turns on the TV and relaxes."),
+
+        qEx("b1-16a", "16. Reported Speech", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta para el estilo indirecto.", [
+          mc("“I am tired,” she said. = She said that she ___ tired.", ["was", "is"], "was"),
+          mc("“We live in Puebla,” they said. = They said they ___ in Puebla.", ["lived", "live"], "lived"),
+          mc("“I will call you,” he said. = He said he ___ call me.", ["would", "will"], "would"),
+          mc("“Do you like pizza?” she asked me. = She asked me if I ___ pizza.", ["liked", "like"], "liked"),
+          mc("“I have finished,” he said. = He said he ___.", ["had finished", "has finished"], "had finished")
+        ]),
+        qEx("b1-16b", "16. Reported Speech", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["said", "she", "that", "was", "she", "tired"], "She said that she was tired."),
+          sc(["he", "asked", "me", "where", "I", "lived"], "He asked me where I lived."),
+          sc(["told", "me", "they", "they", "would", "come"], "They told me they would come."),
+          sc(["if", "asked", "I", "she", "liked", "coffee"], "She asked if I liked coffee."),
+          sc(["he", "said", "that", "he", "was", "not", "working"], "He said that he was not working.")
+        ]),
+
+        qEx("b1-17a", "17. Indirect questions", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("Could you tell me where ___?", ["is the bank", "the bank is", "does the bank is"], "the bank is"),
+          mc("Do you know what time ___?", ["the movie starts", "does the movie start", "starts the movie"], "the movie starts"),
+          mc("I don't know why ___ late.", ["is he", "he is", "does he be"], "he is"),
+          mc("Can you tell me how much ___?", ["does this cost", "this costs", "costs this"], "this costs"),
+          mc("I wonder if ___ here.", ["she lives", "does she live", "lives she"], "she lives")
+        ]),
+        qEx("b1-17b", "17. Indirect questions", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["could", "you", "tell", "me", "where", "the station", "is", "?"], "Could you tell me where the station is?"),
+          sc(["know", "do", "you", "what", "time", "it", "is", "?"], "Do you know what time it is?"),
+          sc(["I", "don't", "know", "where", "he", "lives"], "I don't know where he lives."),
+          sc(["wonder", "I", "if", "she", "is", "coming"], "I wonder if she is coming."),
+          sc(["please", "tell", "me", "where", "the toilets", "are"], "Please tell me where the toilets are.")
+        ]),
+
+        qEx("b1-18a", "18. Advanced Comparatives", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("This exam was ___ difficult than the last one.", ["so", "less", "most"], "less"),
+          mc("My house is not ___ big as yours.", ["as", "than", "most"], "as"),
+          mc("The more you practice, ___ you get.", ["the better", "better", "the best"], "the better"),
+          mc("This car is ___ faster than that one.", ["very", "much", "most"], "much"),
+          mc("She is ___ taller than her sister.", ["slightly", "the", "so"], "slightly")
+        ]),
+        qEx("b1-18b", "18. Advanced Comparatives", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“He is as tall as his brother.”", "Verdadero"),
+          tf("“This test is more easier than the last one.”", "Falso", "Forma correcta: easier."),
+          tf("“The more I eat, the more I weigh.”", "Verdadero"),
+          tf("“She runs more fast than me.”", "Falso", "Forma correcta: faster."),
+          tf("“My phone is not as expensive as yours.”", "Verdadero")
+        ]),
+
+        qEx("b1-19a", "19. Present Perfect Continuous", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee el texto y contesta.", [
+          mc("How long has Diego been learning English?", ["six months", "two years", "ten years"], "two years"),
+          tf("Diego has been studying every morning.", "Falso", "Estudia todas las tardes (every evening)."),
+          mc("What has he been preparing for this week?", ["an exam", "a trip", "a party"], "an exam"),
+          mc("Who has been helping him with speaking?", ["Ana", "his boss", "his mother"], "Ana"),
+          tf("Diego is happy because he has been improving.", "Verdadero")
+        ], "Diego has been learning English for two years. He has been studying every evening since he started his new job. This week he has been preparing for an important exam. His friend Ana has been helping him with speaking practice. They have been meeting at a café near the school. Diego is tired, but he is happy because he has been improving a lot."),
+        qEx("b1-19b", "19. Present Perfect Continuous", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el verbo en Present Perfect Continuous.", [
+          fb("I ___ (wait) for you for an hour.", "have been waiting"),
+          fb("She ___ (work) here since 2019.", "has been working"),
+          fb("They ___ (not sleep) well lately.", "haven't been sleeping"),
+          fb("How long ___ you ___ (live) here?", ["have", "been living"]),
+          fb("It ___ (rain) all day.", "has been raining")
+        ])
+      ],
+
+      // ==========================================
+      // NIVEL B2 (19 TEMAS · 38 EJERCICIOS)
+      // ==========================================
+      B2: [
+        qEx("b2-1a", "1. Past Perfect", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("When I arrived, the film ___.", ["had started", "started"], "had started"),
+          mc("She ___ anything before the exam, so she felt weak.", ["hadn't eaten", "didn't eat"], "hadn't eaten"),
+          mc("___ you finished your work before the boss came?", ["Had", "Did"], "Had"),
+          mc("By the time we got to the station, the train ___.", ["had left", "has left"], "had left"),
+          mc("He told me he ___ the sea before.", ["had never seen", "never saw"], "had never seen")
+        ]),
+        qEx("b2-1b", "1. Past Perfect", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el verbo en Past Perfect.", [
+          fb("After she ___ (finish) dinner, she watched TV.", "had finished"),
+          fb("I ___ (not see) him before yesterday.", "hadn't seen"),
+          fb("They ___ (already / leave) when we arrived.", "had already left"),
+          fb("___ you ___ (ever / be) abroad before 2020?", ["Had", "ever been"]),
+          fb("She was upset because he ___ (forget) her birthday.", "had forgotten")
+        ]),
+
+        qEx("b2-2a", "2. Past Perfect Continuous", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("I was exhausted because I ___ all day.", ["worked", "had been working", "have been working"], "had been working"),
+          mc("They ___ for two hours when the bus finally came.", ["had been waiting", "were wait", "waited"], "had been waiting"),
+          mc("She ___ long when she fell asleep.", ["hadn't been reading", "hasn't read", "didn't been reading"], "hadn't been reading"),
+          mc("How long had you ___ before you found the keys?", ["looked", "been looking", "looking"], "been looking"),
+          mc("The streets were wet. It ___.", ["had been raining", "was rain", "has rained"], "had been raining")
+        ]),
+        qEx("b2-2b", "2. Past Perfect Continuous", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“He had been running, so he was out of breath.”", "Verdadero"),
+          tf("“She had been cook for hours when we arrived.”", "Falso", "Forma correcta: had been cooking."),
+          tf("“We hadn't been sleeping well, so we were tired.”", "Verdadero"),
+          tf("“Had they been waiting long?”", "Verdadero"),
+          tf("“I have been waiting for an hour when she arrived.”", "Falso", "Forma correcta: had been waiting.")
+        ]),
+
+        qEx("b2-3a", "3. Narrative tenses combinados", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee la historia de Sara y contesta.", [
+          mc("What was Sara doing when she noticed the light?", ["walking", "driving home", "sleeping"], "driving home"),
+          mc("Why had Sara left work late?", ["she had been finishing a report", "she missed the bus", "she was ill"], "she had been finishing a report"),
+          tf("The old man's car had broken down.", "Verdadero"),
+          mc("How long had the old man been walking?", ["a few minutes", "since his car broke down", "all day"], "since his car broke down"),
+          tf("Sara refused to help him.", "Falso")
+        ], "It was a stormy night. Sara was driving home when she noticed a strange light on the road. She had left work late because she had been finishing an important report. When she stopped the car, she saw an old man who was waving his arms. His car had broken down an hour earlier, and he had been walking in the rain ever since. Sara gave him a lift and they talked all the way."),
+        qEx("b2-3b", "3. Narrative tenses combinados", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige el tiempo narrativo correcto.", [
+          mc("While I ___ home, it started to rain.", ["walked", "was walking"], "was walking"),
+          mc("She ___ all night, so she was very tired the next day.", ["had been studying", "was studying"], "had been studying"),
+          mc("When we got to the cinema, the film ___.", ["had already started", "was already starting"], "had already started"),
+          mc("He ___ when the phone rang.", ["was cooking", "had cooked"], "was cooking"),
+          mc("After he ___ his homework, he went out.", ["had finished", "was finishing"], "had finished")
+        ]),
+
+        qEx("b2-4a", "4. Third Conditional", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["if", "I", "had", "studied", "I", "would", "have", "passed"], "If I had studied, I would have passed."),
+          sc(["she", "wouldn't", "have", "been", "late", "if", "she", "had", "left", "earlier"], "She wouldn't have been late if she had left earlier."),
+          sc(["what", "would", "you", "have", "done", "if", "you", "had", "lost", "your job", "?"], "What would you have done if you had lost your job?"),
+          sc(["if", "they", "had", "known", "they", "would", "have", "told", "us"], "If they had known, they would have told us."),
+          sc(["he", "would", "have", "come", "if", "you", "had", "invited", "him"], "He would have come if you had invited him.")
+        ]),
+        qEx("b2-4b", "4. Third Conditional", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("If I ___ earlier, I wouldn't have missed the bus.", ["left", "had left", "would leave"], "had left"),
+          mc("She would have called you if she ___ your number.", ["had had", "has", "would have"], "had had"),
+          mc("If we ___ the map, we wouldn't have got lost.", ["had taken", "took", "have taken"], "had taken"),
+          mc("___ you have gone if they had invited you?", ["Did", "Would", "Had"], "Would"),
+          mc("If he hadn't been ill, he ___ to the party.", ["will go", "would have gone", "would go"], "would have gone")
+        ]),
+
+        qEx("b2-5a", "5. Mixed Conditionals", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el verbo en la forma correcta.", [
+          fb("If I ___ (study) medicine, I would be a doctor now.", "had studied"),
+          fb("If she ___ (not be) so shy, she would have asked him out.", "weren't"),
+          fb("If we ___ (leave) earlier, we wouldn't be late now.", "had left"),
+          fb("I ___ (be) richer now if I had invested in that company.", "would be"),
+          fb("If he ___ (speak) Spanish, he would have got the job.", "spoke")
+        ]),
+        qEx("b2-5b", "5. Mixed Conditionals", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“If I had slept more, I wouldn't be tired now.”", "Verdadero"),
+          tf("“If she was richer, she would have bought the house last year.”", "Verdadero"),
+          tf("“If I had known, I will tell you.”", "Falso", "Forma correcta: I would have told you."),
+          tf("“If they had taken the job, they would live in Paris now.”", "Verdadero"),
+          tf("“If he hadn't missed the flight, he would be here yesterday.”", "Falso", "Forma correcta: would have been here.")
+        ]),
+
+        qEx("b2-6a", "6. Future Perfect", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("By 2030, I ___ my studies.", ["will finish", "will have finished", "finish"], "will have finished"),
+          mc("She ___ the report by Friday.", ["will have written", "writes", "is writing"], "will have written"),
+          mc("By the time you arrive, we ___ dinner.", ["will have eaten", "ate", "will eat"], "will have eaten"),
+          mc("___ they have finished by 6:00?", ["Will", "Do", "Have"], "Will"),
+          mc("They ___ the work by tomorrow; they need more time.", ["won't have finished", "don't finish", "aren't finishing"], "won't have finished")
+        ]),
+        qEx("b2-6b", "6. Future Perfect", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["by", "next", "year", "I", "will", "have", "saved", "enough", "money"], "By next year, I will have saved enough money."),
+          sc(["she", "will", "have", "left", "before", "we", "arrive"], "She will have left before we arrive."),
+          sc(["will", "you", "have", "finished", "by", "noon", "?"], "Will you have finished by noon?"),
+          sc(["they", "won't", "have", "arrived", "by", "then"], "They won't have arrived by then."),
+          sc(["by", "2030", "he", "will", "have", "graduated"], "By 2030, he will have graduated.")
+        ]),
+
+        qEx("b2-7a", "7. Future Continuous", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta.", [
+          mc("This time tomorrow, I ___ to Madrid.", ["will be flying", "will fly"], "will be flying"),
+          mc("Don't call at 8; we ___ dinner.", ["will be having", "will have"], "will be having"),
+          mc("___ the car tonight?", ["Will you be using", "Do you use"], "Will you be using"),
+          mc("She ___ next Monday; it's a holiday.", ["won't be working", "won't working"], "won't be working"),
+          mc("In ten years, we ___ in a bigger house.", ["will be living", "are living"], "will be living")
+        ]),
+        qEx("b2-7b", "7. Future Continuous", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee la agenda de Elena y contesta.", [
+          mc("What will Elena be doing on Monday at 9:00?", ["presenting", "flying to Monterrey", "sleeping"], "flying to Monterrey"),
+          tf("By noon, she will be presenting her project.", "Verdadero"),
+          mc("What will she be doing on Tuesday evening?", ["having dinner with her partners", "flying", "reading"], "having dinner with her partners"),
+          tf("Elena will be sleeping a lot.", "Falso"),
+          tf("On Friday she will be working.", "Falso", "Estará descansando (relaxing).")
+        ], "Next week will be very busy for Elena. On Monday at 9:00, she will be flying to Monterrey for a business meeting. By noon she will be presenting her project to the clients. On Tuesday evening she will be having dinner with her partners. She won't be sleeping much, but on Friday she will be relaxing at home with a good book."),
+
+        qEx("b2-8a", "8. Non-defining relative clauses", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["my", "brother", "who", "lives", "in", "Canada", "is", "a", "chef"], "My brother, who lives in Canada, is a chef."),
+          sc(["Mexico City", "which", "is", "huge", "has", "many", "museums"], "Mexico City, which is huge, has many museums."),
+          sc(["this", "is", "Ana", "whose", "sister", "is", "my", "teacher"], "This is Ana, whose sister is my teacher."),
+          sc(["we", "visited", "Puebla", "where", "we", "ate", "mole"], "We visited Puebla, where we ate mole."),
+          sc(["the", "film", "which", "I", "saw", "was", "long"], "The film, which I saw, was long.")
+        ]),
+        qEx("b2-8b", "8. Non-defining relative clauses", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe who, which, whose o where.", [
+          fb("My boss, ___ is very kind, is from Peru.", "who"),
+          fb("The new phone, ___ I bought last week, is great.", "which"),
+          fb("Peter, ___ car is red, lives next door.", "whose"),
+          fb("We stayed in Oaxaca, ___ the food is amazing.", "where"),
+          fb("My grandmother, ___ you met yesterday, is 90.", "who")
+        ]),
+
+        qEx("b2-9a", "9. Advanced Passive Voice", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma pasiva correcta.", [
+          mc("The report ___ at the moment.", ["is being written", "is writing"], "is being written"),
+          mc("The bridge ___ recently.", ["has been built", "has built"], "has been built"),
+          mc("The problem ___ tomorrow.", ["will be solved", "will solve"], "will be solved"),
+          mc("It ___ that the mayor will resign.", ["is said", "says"], "is said"),
+          mc("The documents ___ today.", ["must be signed", "must sign"], "must be signed")
+        ]),
+        qEx("b2-9b", "9. Advanced Passive Voice", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción correcta.", [
+          mc("The house ___ by the time we arrived.", ["had been cleaned", "was cleaning", "has cleaned"], "had been cleaned"),
+          mc("He is believed ___ the best player in the world.", ["to be", "being", "be"], "to be"),
+          mc("The new library ___ built next year.", ["is being", "will be", "has been"], "will be"),
+          mc("The patient ___ now by a doctor.", ["is being examined", "is examining", "examined"], "is being examined"),
+          mc("The car ___ repaired when I called.", ["was being", "has been", "is"], "was being")
+        ]),
+
+        qEx("b2-10a", "10. Causative form", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe have o get y el participio.", [
+          fb("I ___ my car ___ every year. (wash)", ["have|get", "washed"]),
+          fb("She ___ her hair ___ yesterday. (cut)", ["had|got", "cut"]),
+          fb("We are going to ___ the house ___ next month. (paint)", ["have|get", "painted"]),
+          fb("Have you ever ___ your photo taken by a professional?", "had"),
+          fb("He needs to ___ his phone ___. (repair)", ["get|have", "repaired"])
+        ]),
+        qEx("b2-10b", "10. Causative form", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración causativa es correcta?", [
+          tf("“I had my laptop fixed yesterday.”", "Verdadero"),
+          tf("“She has her nails do every week.”", "Falso", "Forma correcta: done."),
+          tf("“We are having the kitchen painting.”", "Falso", "Forma correcta: painted."),
+          tf("“Did you get your hair cut?”", "Verdadero"),
+          tf("“He had cut his hair by a barber.”", "Falso", "Forma correcta: He had his hair cut by a barber.")
+        ]),
+
+        qEx("b2-11a", "11. Reported Speech avanzado", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la forma correcta para el estilo indirecto.", [
+          mc("“I can swim,” she said. = She said she ___ swim.", ["could", "can"], "could"),
+          mc("“You must see a doctor,” he told me. = He told me I ___ see a doctor.", ["had to", "must"], "had to"),
+          mc("“Where do you live?” he asked. = He asked me where I ___.", ["lived", "do live"], "lived"),
+          mc("“Don't be late,” the teacher said. = The teacher told us ___ late.", ["not to be", "don't be"], "not to be"),
+          mc("“Will you help me?” she asked. = She asked if I ___ her.", ["would help", "will help"], "would help")
+        ]),
+        qEx("b2-11b", "11. Reported Speech avanzado", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["she", "asked", "me", "if", "I", "could", "help", "her"], "She asked me if I could help her."),
+          sc(["he", "told", "us", "not", "to", "make", "noise"], "He told us not to make noise."),
+          sc(["they", "wanted", "to", "know", "where", "I", "had", "been"], "They wanted to know where I had been."),
+          sc(["she", "said", "that", "she", "might", "be", "late"], "She said that she might be late."),
+          sc(["the", "doctor", "advised", "him", "to", "rest"], "The doctor advised him to rest.")
+        ]),
+
+        qEx("b2-12a", "12. Modals of speculation en pasado", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige el modal de especulación correcto.", [
+          mc("The lights are off. They ___ gone out.", ["must have", "can't have", "should"], "must have"),
+          mc("He ___ been at home; I saw him at the office all day.", ["must have", "can't have", "might"], "can't have"),
+          mc("She's not answering. She ___ been sleeping.", ["might have", "can't have", "shouldn't"], "might have"),
+          mc("The keys aren't here. I ___ left them in the car.", ["must have", "can't have", "will have"], "must have"),
+          mc("They ___ arrived yet; their car isn't here.", ["can't have", "must have", "should"], "can't have")
+        ]),
+        qEx("b2-12b", "12. Modals of speculation en pasado", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“She must have forgot the meeting.”", "Falso", "Forma correcta: must have forgotten."),
+          tf("“He can't have stolen it; he was abroad.”", "Verdadero"),
+          tf("“They might have missed the train.”", "Verdadero"),
+          tf("“It must rained last night.”", "Falso", "Forma correcta: must have rained."),
+          tf("“You should have called me.”", "Verdadero")
+        ]),
+
+        qEx("b2-13a", "13. Wish / If only", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración.", [
+          sc(["I", "wish", "I", "had", "more", "free time"], "I wish I had more free time."),
+          sc(["she", "wishes", "she", "could", "speak", "French"], "She wishes she could speak French."),
+          sc(["if", "only", "I", "had", "studied", "harder"], "If only I had studied harder."),
+          sc(["I", "wish", "you", "wouldn't", "shout"], "I wish you wouldn't shout."),
+          sc(["he", "wishes", "he", "hadn't", "sold", "his", "car"], "He wishes he hadn't sold his car.")
+        ]),
+        qEx("b2-13b", "13. Wish / If only", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“I wish I have a bigger house.”", "Falso", "Forma correcta: I wish I had."),
+          tf("“If only I had listened to you!”", "Verdadero"),
+          tf("“She wishes she would be taller.”", "Falso", "Forma correcta: she were / was taller."),
+          tf("“I wish it wasn't raining.”", "Verdadero"),
+          tf("“He wishes he didn't buy that phone.”", "Falso", "Forma correcta: he hadn't bought.")
+        ]),
+
+        qEx("b2-14a", "14. Discourse markers / Linking words", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee el texto y contesta.", [
+          mc("Is the city cheap?", ["No, it's expensive", "Yes", "It doesn't say"], "No, it's expensive"),
+          mc("In spite of the high salaries, the cost of living is ___", ["lower", "even higher", "the same"], "even higher"),
+          tf("Marta can save a lot of money.", "Falso"),
+          mc("Why does Marta believe the experience is worth it?", ["She is learning a lot", "She earns little", "She dislikes her job"], "She is learning a lot"),
+          mc("Her brother prefers a small town because ___", ["it is calmer", "it is bigger", "it is cheaper"], "it is calmer")
+        ], "Although the city is expensive, many young people want to live there. However, finding a job is not easy. In spite of the high salaries, the cost of living is even higher. Despite working long hours, Marta can barely save money. Nevertheless, she believes the experience is worth it, because she is learning a lot. On the other hand, her brother prefers a small town, since life there is calmer."),
+        qEx("b2-14b", "14. Discourse markers / Linking words", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige el conector correcto.", [
+          mc("___ it was raining, we went out.", ["Although", "Despite"], "Although"),
+          mc("___ the noise, she slept well.", ["In spite of", "Although"], "In spite of"),
+          mc("He is rich; ___, he is not happy.", ["however", "because"], "however"),
+          mc("I stayed home ___ the storm.", ["because of", "although"], "because of"),
+          mc("She studied a lot; ___, she passed easily.", ["therefore", "but"], "therefore")
+        ]),
+
+        qEx("b2-15a", "15. Phrasal verbs avanzados", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige el phrasal verb correcto.", [
+          mc("The meeting was ___ because of the storm.", ["called off", "called up"], "called off"),
+          mc("I can't ___ this noise any longer.", ["put up with", "put out"], "put up with"),
+          mc("She ___ a great idea.", ["came up with", "came across"], "came up with"),
+          mc("We have ___ milk.", ["run out of", "run into"], "run out of"),
+          mc("He finally ___ smoking.", ["gave up", "gave in"], "gave up")
+        ]),
+        qEx("b2-15b", "15. Phrasal verbs avanzados", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee la historia de Daniel y contesta.", [
+          mc("What did Daniel almost do at first?", ["give up", "move", "retire"], "give up"),
+          mc("Who told him to cheer up?", ["his sister", "his boss", "an old friend"], "his sister"),
+          tf("Daniel met an old friend by chance.", "Verdadero"),
+          tf("The business failed.", "Falso"),
+          mc("Soon they decided to set up ___", ["a second office", "a new house", "a restaurant"], "a second office")
+        ], "When Daniel started his own company, he had to deal with many problems. At first, he couldn't put up with the stress and almost gave up. But his sister told him to cheer up and carry on. One day he came across an old friend who offered him a contract. Daniel took it on and worked hard. Soon the business took off, and they decided to set up a second office."),
+
+        qEx("b2-16a", "16. Dependent prepositions", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe la preposición correcta.", [
+          fb("She is good ___ math.", "at"),
+          fb("I'm interested ___ photography.", "in"),
+          fb("It depends ___ the weather.", "on"),
+          fb("He apologized ___ being late.", "for"),
+          fb("We are looking forward ___ the holidays.", "to")
+        ]),
+        qEx("b2-16b", "16. Dependent prepositions", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la preposición correcta.", [
+          mc("She is afraid ___ spiders.", ["from", "of", "at"], "of"),
+          mc("I agree ___ you.", ["with", "to", "on"], "with"),
+          mc("He is responsible ___ the project.", ["of", "for", "with"], "for"),
+          mc("They arrived ___ the airport at noon.", ["to", "at", "in"], "at"),
+          mc("She's tired ___ waiting.", ["of", "from", "for"], "of")
+        ]),
+
+        qEx("b2-17a", "17. Expresiones con “get”", "Elegir la forma correcta", "multiple-choice", "Elegir forma correcta · 5 reactivos", "Elige la opción correcta.", [
+          mc("She ___ with her coworkers very well.", ["gets along", "gets away"], "gets along"),
+          mc("It took him months to ___ the flu.", ["get over", "get away"], "get over"),
+          mc("He cheated on the test and ___ with it.", ["got away", "got along"], "got away"),
+          mc("I'm ___ hungry. Let's eat.", ["getting", "making"], "getting"),
+          mc("The weather is ___ colder every day.", ["getting", "making"], "getting")
+        ]),
+        qEx("b2-17b", "17. Expresiones con “get”", "Verdadero / Falso", "multiple-choice", "Verdadero / Falso · 5 reactivos", "¿La oración es correcta?", [
+          tf("“I get along with my sister very well.”", "Verdadero"),
+          tf("“She got over her fear of flying.”", "Verdadero"),
+          tf("“He got over to the flu quickly.”", "Falso", "Forma correcta: got over the flu."),
+          tf("“You can't get away with lying all the time.”", "Verdadero"),
+          tf("“She is getting angrily.”", "Falso", "Forma correcta: getting angry.")
+        ]),
+
+        qEx("b2-18a", "18. Registro formal vs. informal", "Reading corto", "multiple-choice", "Reading corto · 5 reactivos", "Lee ambos mensajes y contesta.", [
+          mc("Which message is more formal?", ["A", "B"], "B"),
+          tf("“Hi Tom!” is a formal greeting.", "Falso"),
+          mc("“At your earliest convenience” means ___", ["as soon as you can", "never", "next year"], "as soon as you can"),
+          mc("“Yours sincerely” is used in ___", ["formal writing", "informal writing", "both"], "formal writing"),
+          tf("“ASAP” is common in informal messages.", "Verdadero")
+        ], "Message A: “Hi Tom! Can you send me the file ASAP? Thanks!”\n\nMessage B: “Dear Mr. Ramirez, I would be grateful if you could send me the report at your earliest convenience. Yours sincerely, Ana Torres.”"),
+        qEx("b2-18b", "18. Registro formal vs. informal", "Opción múltiple", "multiple-choice", "Opción múltiple · 5 reactivos", "Elige la opción más formal.", [
+          mc("The most formal request is:", ["Gimme the file.", "Can you send the file?", "Could you possibly send me the file?"], "Could you possibly send me the file?"),
+          mc("A formal word for “get” is:", ["obtain", "grab", "fetch"], "obtain"),
+          mc("Informal: “I wanna go.” Formal:", ["I want go", "I would like to go", "I wanna to go"], "I would like to go"),
+          mc("“Sorry for the delay” in a formal style:", ["My bad", "I apologize for the delay", "No worries"], "I apologize for the delay"),
+          mc("A formal closing for “Dear Sir or Madam”:", ["Bye!", "Cheers", "Yours faithfully"], "Yours faithfully")
+        ]),
+
+        qEx("b2-19a", "19. Inversion", "Ordenar palabras", "scramble", "Ordenar palabras · 5 reactivos", "Ordena las palabras para formar la oración invertida.", [
+          sc(["never", "have", "I", "seen", "such", "a", "beautiful", "place"], "Never have I seen such a beautiful place."),
+          sc(["not", "only", "did", "he", "win", "but", "he", "also", "broke", "the record"], "Not only did he win, but he also broke the record."),
+          sc(["hardly", "had", "we", "arrived", "when", "it", "started", "to rain"], "Hardly had we arrived when it started to rain."),
+          sc(["rarely", "do", "they", "eat", "out"], "Rarely do they eat out."),
+          sc(["under", "no", "circumstances", "should", "you", "open", "this", "door"], "Under no circumstances should you open this door.")
+        ]),
+        qEx("b2-19b", "19. Inversion", "Completar el espacio", "fill-blank", "Completar el espacio · 5 reactivos", "Escribe el auxiliar invertido.", [
+          fb("Never ___ I ___ such a long film. (see)", ["have", "seen"]),
+          fb("Not only ___ she sing, but she also plays the guitar.", "does"),
+          fb("Seldom ___ he arrive on time.", "does"),
+          fb("No sooner ___ we sat down than the music started.", "had"),
+          fb("Little ___ she know that he was watching her.", "did")
+        ])
+      ],
+
+      // ==========================================
+      // SECCIÓN TOEFL (PARTE 1 READING + PARTE 2 GRAMMAR)
+      // ==========================================
+      TOEFL: [
+        // PARTE 1: READING
+        qEx("t-1a", "Parte 1 · 1. Complete the Words", "Párrafo A: Urban Gardens", "fill-blank", "Complete the Words · 10 palabras", "Escribe la palabra completa que falta en cada número del párrafo.", [
+          fb("Palabra (1): prov... → ___", "provide|ide"),
+          fb("Palabra (2): veget... → ___", "vegetables|ables"),
+          fb("Palabra (3): loc... → ___", "local|al"),
+          fb("Palabra (4): cre... → ___", "create|ate"),
+          fb("Palabra (5): neigh... → ___", "neighbors|bors"),
+          fb("Palabra (6): fou... → ___", "found|nd"),
+          fb("Palabra (7): wo... → ___", "work|rk"),
+          fb("Palabra (8): oft... → ___", "often|en"),
+          fb("Palabra (9): healt... → ___", "healthier|hier"),
+          fb("Palabra (10): roo... → ___", "roofs|fs")
+        ], "Urban gardens have become popular in many large cities around the world. They (1) prov___ fresh (2) veget_____ for (3) loc__ families and also (4) cre___ green spaces where (5) neigh____ can meet. Researchers have (6) fou__ that people who (7) wo__ in these gardens (8) oft__ feel less stress and eat (9) healt____ meals. Some gardens are built on empty lots, while others are placed on the (10) roo__ of tall buildings."),
+
+        qEx("t-1b", "Parte 1 · 1. Complete the Words", "Párrafo B: Sleep & Memory", "fill-blank", "Complete the Words · 10 palabras", "Escribe la palabra completa que falta en cada número del párrafo.", [
+          fb("Palabra (1): organ... → ___", "organizes|izes"),
+          fb("Palabra (2): inform... → ___", "information|ation"),
+          fb("Palabra (3): rece... → ___", "received|ived"),
+          fb("Palabra (4): sle... → ___", "sleep|ep"),
+          fb("Palabra (5): few... → ___", "fewer|er"),
+          fb("Palabra (6): diffi... → ___", "difficulty|culty"),
+          fb("Palabra (7): atten... → ___", "attention|tion"),
+          fb("Palabra (8): recom... → ___", "recommend|mend"),
+          fb("Palabra (9): teena... → ___", "teenagers|gers"),
+          fb("Palabra (10): avo... → ___", "avoid|id")
+        ], "Sleep is essential for learning and memory. During the night, the brain (1) organ____ the (2) inform_____ it (3) rece____ during the day. Students who (4) sle__ (5) few__ than six hours often have (6) diffi_____ paying (7) atten____ in class. Experts (8) recom____ that (9) teena____ go to bed at the same time every night and (10) avo__ using phones before sleeping."),
+
+        qEx("t-2a", "Parte 1 · 2. Read in Daily Life", "Texto 1: Email (Change of Room)", "multiple-choice", "Daily Life · 3 reactivos", "Lee el correo y responde.", [
+          mc("Why is the class changing rooms?", ["The room is too small", "There is a heating problem", "Another class needs it"], "There is a heating problem"),
+          mc("What should students bring?", ["their lab notebooks", "their laptops", "their tickets"], "their lab notebooks"),
+          mc("What should students do if they cannot attend?", ["go to Room 204", "send a message before Wednesday evening", "call on Thursday morning"], "send a message before Wednesday evening")
+        ], "Subject: Change of room for Thursday's class\nHello everyone, the Biology 101 class on Thursday will not be in Room 204. Because of a problem with the heating, we will meet in Room 310 on the third floor instead. The class will start at the usual time, 9:30 a.m. Please bring your lab notebooks. If you cannot attend, send me a message before Wednesday evening. — Prof. Alvarez"),
+
+        qEx("t-2b", "Parte 1 · 2. Read in Daily Life", "Texto 2: Aviso (Campus Library)", "multiple-choice", "Daily Life · 3 reactivos", "Lee el aviso y responde.", [
+          mc("When will the library close on weekends?", ["6:00 p.m.", "8:00 p.m.", "10:00 p.m."], "6:00 p.m."),
+          mc("How can students get a study room?", ["at the front desk on the same day", "by reserving it online at least a day ahead", "by sending an email"], "by reserving it online at least a day ahead"),
+          mc("Which item is permitted in the library?", ["a sandwich", "a hot meal", "a drink with a lid"], "a drink with a lid")
+        ], "CAMPUS LIBRARY — NEW HOURS\nStarting next Monday, the library will be open from 8:00 a.m. to 10:00 p.m. on weekdays. On weekends, it will close at 6:00 p.m. Study rooms must be reserved online at least one day in advance. Food is not allowed, but drinks with lids are permitted."),
+
+        qEx("t-2c", "Parte 1 · 2. Read in Daily Life", "Texto 3: Mensajes (Maya & Leo)", "multiple-choice", "Daily Life · 3 reactivos", "Lee la conversación y responde.", [
+          mc("Why will Leo be late?", ["he forgot", "his bus is late", "he has class"], "his bus is late"),
+          mc("Where will they meet?", ["at the library", "at the café near the gym", "at Leo's house"], "at the café near the gym"),
+          mc("What will Maya bring?", ["the printed slides", "a printer", "a laptop"], "the printed slides")
+        ], "Maya: Hey! Are we still meeting at 5 for the group project?\nLeo: Sorry, my bus is late. I'll be there around 5:30.\nMaya: No problem. I'll book a table at the café near the gym, since the library is full.\nLeo: Perfect. Can you bring the printed slides? My printer isn't working.\nMaya: Sure!"),
+
+        qEx("t-3a", "Parte 1 · 3. Read an Academic Passage", "Passage 1: The Honeybee Dance", "multiple-choice", "Academic Reading · 5 reactivos", "Lee el pasaje académico y responde.", [
+          mc("What is the main idea of the passage?", ["Bees prefer certain flowers", "Bees use dance and scents to share information", "Robots can replace bees", "Bees fly very long distances"], "Bees use dance and scents to share information"),
+          mc("According to the passage, the length of the waggle run shows ___", ["the direction", "the type of flower", "the distance", "the time of day"], "the distance"),
+          mc("The word “accurately” is closest in meaning to ___", ["quickly", "correctly", "slowly", "carefully"], "correctly"),
+          mc("What can be inferred about the robot bee?", ["Real bees reacted to its dance", "It was faster than real bees", "It produced pheromones", "Scientists built it in the 1940s"], "Real bees reacted to its dance"),
+          mc("Why does the author mention pheromones?", ["To show that dancing is not the only way bees communicate", "To explain how bees make honey", "To compare bees with ants", "To criticize earlier research"], "To show that dancing is not the only way bees communicate")
+        ], "Honeybees communicate in a remarkable way. When a worker bee finds a good source of food, she returns to the hive and performs a movement known as the waggle dance. By moving in a figure-eight pattern, she shares information about the food with other bees. The angle of the dance, measured against the direction of gravity, shows the direction of the food relative to the sun. The length of the central part of the dance, the waggle run, indicates the distance: the longer the run, the farther away the flowers are. Scientists first described this behavior in the 1940s, and later experiments confirmed that other bees can follow the instructions accurately. Some researchers have even built a small robot bee to test the idea, and real bees responded to it. However, the dance is not the only way bees communicate. They also use scents, called pheromones, to signal danger or to help lost bees find the hive. Together, these methods allow a colony of thousands of insects to work as one organized group."),
+
+        qEx("t-3b", "Parte 1 · 3. Read an Academic Passage", "Passage 2: The History of the Bicycle", "multiple-choice", "Academic Reading · 5 reactivos", "Lee el pasaje académico y responde.", [
+          mc("What problem did the bicycle with a large front wheel have?", ["It had no pedals", "Falling from it was dangerous", "It was too heavy", "It used a chain"], "Falling from it was dangerous"),
+          mc("The “safety bicycle” became popular because it ___", ["was cheaper than cars", "had a larger front wheel", "was safer and easier to ride", "was made of aluminum"], "was safer and easier to ride"),
+          mc("The word “constant” is closest in meaning to ___", ["rare", "continuous", "unknown", "sudden"], "continuous"),
+          mc("Which of the following is NOT mentioned in the passage?", ["special lanes", "rental bikes", "electric motors", "aluminum"], "electric motors"),
+          mc("What does the author imply about cars?", ["They are disappearing", "They are still the most common transport", "They are cheaper than bicycles", "They cause no pollution"], "They are still the most common transport")
+        ], "The bicycle has changed a lot since its invention. One of the earliest versions, built in 1817 by a German inventor, had no pedals; riders pushed their feet against the ground to move. Pedals were added in the 1860s, but the front wheel was so large that falling was a constant danger. In the 1880s, the “safety bicycle” appeared, with two wheels of equal size and a chain connected to the back wheel. This design made riding much safer and easier, and it quickly became popular, especially among women, who gained a new sense of independence. Over the next century, bicycles became lighter and faster thanks to new materials such as aluminum. Today, many cities encourage cycling because it reduces traffic and pollution. Some cities have built special lanes and even offer rental bikes that people can pick up and leave at different stations. Although cars remain the main form of transport in most places, the bicycle continues to be an inexpensive and healthy alternative."),
+
+        qEx("t-3c", "Parte 1 · 3. Read an Academic Passage", "Passage 3: Coral Reefs", "multiple-choice", "Academic Reading · 5 reactivos", "Lee el pasaje académico y responde.", [
+          mc("What is the passage mainly about?", ["How corals build coastlines", "The importance of coral reefs and the threats they face", "How algae reproduce", "Jobs in the fishing industry"], "The importance of coral reefs and the threats they face"),
+          mc("According to the passage, why do corals turn white?", ["They run out of food", "They expel the algae when the water is too warm", "They are attacked by predators", "They lose calcium"], "They expel the algae when the water is too warm"),
+          mc("The word “accumulate” is closest in meaning to ___", ["disappear", "gather", "break", "move"], "gather"),
+          mc("What does the author say about coral nurseries?", ["They solve the problem completely", "They are promising, but not the most effective solution", "They are too expensive", "They only work in cold water"], "They are promising, but not the most effective solution"),
+          mc("Which statement is TRUE according to the passage?", ["Reefs cover about a quarter of the ocean floor", "Reefs help protect coasts from storms", "Bleaching has become less frequent", "Algae make corals less colorful"], "Reefs help protect coasts from storms")
+        ], "Coral reefs are among the most diverse ecosystems on Earth. Although they cover less than one percent of the ocean floor, they support about a quarter of all marine species. Corals are tiny animals that build hard skeletons of calcium carbonate, and over thousands of years these skeletons accumulate to form large reef structures. Many corals live in partnership with microscopic algae, which provide them with food through photosynthesis and give them their bright colors. When the water becomes too warm, however, corals expel the algae, turn white, and may die, a process known as bleaching. Scientists have observed more frequent bleaching events in recent decades and link them to rising ocean temperatures. Reefs are important not only for wildlife but also for people: they protect coastlines from storms and provide food and jobs for millions of families. To help reefs recover, some projects grow young corals in nurseries and then attach them to damaged areas. Although these efforts show promise, researchers agree that reducing greenhouse gas emissions remains the most effective way to protect reefs in the long term."),
+
+        // PARTE 2: GRAMMAR
+        qEx("t-4", "Parte 2 · 4. Build a Sentence", "Ordena las palabras para responder", "scramble", "Build a Sentence · 10 reactivos", "Ordena las palabras para responder correctamente a cada pregunta.", [
+          sc(["opens", "the library", "at", "eight", "o'clock"], "The library opens at eight o'clock.", "What time does the library open?"),
+          sc(["the", "missed", "I", "bus"], "I missed the bus.", "Why were you late?"),
+          sc(["said", "the exam", "would be", "on Friday", "that", "she"], "She said that the exam would be on Friday.", "What did the professor say?"),
+          sc(["not", "I", "it", "have", "finished", "yet"], "I have not finished it yet.", "Have you finished your essay?"),
+          sc(["don't", "I", "know", "where", "it", "is"], "I don't know where it is.", "Do you know where the bookstore is?"),
+          sc(["I", "think", "starts", "the class", "at ten"], "I think the class starts at ten.", "When does the class start?"),
+          sc(["going", "I'm", "to", "study", "biology"], "I'm going to study biology.", "What are you going to study?"),
+          sc(["written", "was", "by", "it", "my", "classmate"], "It was written by my classmate.", "Who wrote this report?"),
+          sc(["because", "to", "I", "meet", "want", "new people"], "Because I want to meet new people.", "Why do you want to join the club?"),
+          sc(["for", "I've", "lived", "here", "three years"], "I've lived here for three years.", "How long have you lived here?")
+        ]),
+
+        qEx("t-5", "Parte 2 · 5. Structure", "Completar estructura gramatical", "multiple-choice", "Structure · 10 reactivos", "Elige la opción que completa correctamente la oración.", [
+          mc("Despite ___ tired, she finished the exam.", ["she was", "being", "to be", "is"], "being", "Después de 'Despite' usamos gerundio (-ing) o sustantivo."),
+          mc("The more you practice, ___ you become.", ["the better", "better", "best", "the best"], "the better", "Doble comparativo: The more..., the better..."),
+          mc("Neither the students nor the teacher ___ aware of the change.", ["were", "are", "was", "have been"], "was", "Con 'Neither... nor...', el verbo concuerda con el sujeto más cercano ('the teacher' → singular)."),
+          mc("If I ___ more time, I would travel the world.", ["have", "had", "will have", "would have"], "had", "Second Conditional: If + Past Simple, would + verbo."),
+          mc("The report, ___ was published last year, is still useful.", ["who", "which", "where", "what"], "which", "En cláusulas no definitorias para cosas usamos 'which'."),
+          mc("She suggested ___ the meeting to Friday.", ["to move", "moving", "move", "moved"], "moving", "'Suggest' va seguido de gerundio (-ing)."),
+          mc("By the time we arrived, the movie ___.", ["already started", "has already started", "had already started", "was already start"], "had already started", "Acción anterior a otra en pasado → Past Perfect."),
+          mc("It is essential that every student ___ the form by Monday.", ["submits", "submit", "submitted", "will submit"], "submit", "Subjuntivo tras 'It is essential that': verbo en forma base."),
+          mc("Not only ___ the exam, but she also got the highest score.", ["she passed", "did she pass", "she did pass", "passed she"], "did she pass", "Inversión obligatoria tras 'Not only' al inicio."),
+          mc("The new library, ___ near the main gate, will open next month.", ["which build", "which is being built", "that is built", "it is being built"], "which is being built", "Cláusula no definitoria en voz pasiva continua.")
+        ]),
+
+        qEx("t-6", "Parte 2 · 6. Error Identification", "Identifica el error (A, B, C o D)", "multiple-choice", "Error Identification · 10 reactivos", "Elige la parte (A, B, C o D) que contiene el error gramatical.", [
+          mc("The (A) number of students who (B) enrolls in online courses (C) has grown (D) rapidly.", ["A", "B", "C", "D"], "B", "Corrección: enroll (el sujeto de 'who' es 'students', plural)."),
+          mc("Each of the (A) professors (B) have (C) their own (D) office.", ["A", "B", "C", "D"], "B", "Corrección: has ('Each' es singular)."),
+          mc("She is (A) looking forward (B) to meet (C) her new (D) classmates.", ["A", "B", "C", "D"], "B", "Corrección: to meeting ('look forward to' + -ing)."),
+          mc("(A) Despite of (B) the rain, (C) we (D) went hiking.", ["A", "B", "C", "D"], "A", "Corrección: Despite (no lleva 'of')."),
+          mc("The (A) scientists (B) discovered (C) that the planet (D) are very cold.", ["A", "B", "C", "D"], "D", "Corrección: is ('the planet' es singular)."),
+          mc("I (A) have (B) lived (C) in Mexico City (D) since five years.", ["A", "B", "C", "D"], "D", "Corrección: for five years ('for' + duración)."),
+          mc("He (A) asked me (B) where (C) did I (D) put the keys.", ["A", "B", "C", "D"], "C", "Corrección: I put (pregunta indirecta sin auxiliar 'did')."),
+          mc("There (A) are (B) a lot of (C) reason (D) to study abroad.", ["A", "B", "C", "D"], "C", "Corrección: reasons (plural después de 'There are a lot of')."),
+          mc("(A) Although the test (B) was difficult, (C) but most students (D) passed.", ["A", "B", "C", "D"], "C", "Corrección: quitar 'but' (no se usa 'although' y 'but' juntos)."),
+          mc("The professor (A) explained (B) us (C) the (D) theory.", ["A", "B", "C", "D"], "B", "Corrección: explained to us ('explain' requiere 'to' antes de la persona).")
+        ]),
+
+        qEx("t-7", "Parte 2 · 7. Conectores y transiciones", "Opción múltiple", "multiple-choice", "Conectores · 5 reactivos", "Elige el conector adecuado.", [
+          mc("The experiment failed; ___, the researchers repeated it.", ["therefore", "however", "for example", "in addition"], "therefore", "Indica consecuencia."),
+          mc("The city is expensive. ___, many people want to live there.", ["As a result", "Nevertheless", "Moreover", "For instance"], "Nevertheless", "Indica contraste ('Sin embargo')."),
+          mc("He studied hard ___ he wanted a scholarship.", ["although", "because", "unless", "whereas"], "because", "Indica causa."),
+          mc("Some students prefer studying alone, ___ others work better in groups.", ["whereas", "because", "so", "unless"], "whereas", "Indica contraste entre dos grupos ('mientras que')."),
+          mc("___ the heavy rain, the match continued.", ["Because of", "Despite", "Although", "Since"], "Despite", "Va seguido de sustantivo ('the heavy rain').")
+        ]),
+
+        qEx("t-8", "Parte 2 · 8. Word Forms", "Completar con la forma correcta", "fill-blank", "Word Forms · 5 reactivos", "Escribe la forma correcta de la palabra entre paréntesis.", [
+          fb("The ___ (develop) of new technology has changed education.", "development", "Sustantivo después de 'The'."),
+          fb("She spoke very ___ (confident) in front of the class.", "confidently", "Adverbio para modificar al verbo 'spoke'."),
+          fb("Pollution is a serious ___ (threaten) to wildlife.", "threat", "Sustantivo después del adjetivo 'serious'."),
+          fb("The results were ___ (surprise).", "surprising", "Adjetivo que describe cómo fueron los resultados."),
+          fb("His ___ (decide) to move abroad surprised everyone.", "decision", "Sustantivo después de 'His'.")
+        ]),
+
+        qEx("t-9", "Parte 2 · 9. Cloze en contexto", "Completar párrafo en contexto", "multiple-choice", "Cloze · 8 reactivos", "Elige la opción que completa correctamente cada hueco numerado del párrafo.", [
+          mc("Hueco (1): Last year, my cousin (1) ___ to study in Canada.", ["decides", "decided", "has decided", "was deciding"], "decided"),
+          mc("Hueco (2): Before she left, she (2) ___ English for five years...", ["studies", "had studied", "has studied", "studying"], "had studied"),
+          mc("Hueco (3): During her first week, she (3) ___ a lot of new friends...", ["made", "did", "put", "went"], "made"),
+          mc("Hueco (4): ...and she soon felt (4) ___ confident.", ["more", "most", "many", "lot"], "more"),
+          mc("Hueco (5): If she (5) ___ more time, she would visit every province.", ["has", "had", "will have", "would have"], "had"),
+          mc("Hueco (6): She says she (6) ___ living abroad since the first week...", ["enjoyed", "has enjoyed", "is enjoying", "enjoys"], "has enjoyed"),
+          mc("Hueco (7): ...and she is looking forward (7) ___ back next summer.", ["to come", "coming", "to coming", "come"], "to coming"),
+          mc("Hueco (8): (8) ___ the cold winters, she loved the experience.", ["Although", "Despite", "Because", "However"], "Despite")
+        ], "Last year, my cousin (1) ___ to study in Canada. Before she left, she (2) ___ English for five years, but she was still nervous. During her first week, she (3) ___ a lot of new friends, and she soon felt (4) ___ confident. If she (5) ___ more time, she would visit every province. She says she (6) ___ living abroad since the first week, and she is looking forward (7) ___ back next summer. (8) ___ the cold winters, she loved the experience.")
+      ]
+    };
+
+    // ==========================================
+    // ESTADO Y NAVEGACIÓN
+    // ==========================================
+    let currentLevel = null;
+    let currentExercise = null;
+    let currentIndex = 0;
+    let score = 0;
+
+    const views = {
+      home: document.getElementById("view-home"),
+      menu: document.getElementById("view-menu"),
+      exercise: document.getElementById("view-exercise")
+    };
+
+    function updateLevelCounts() {
+      ["A1", "A2", "B1", "B2"].forEach(lvl => {
+        const el = document.getElementById(`cta-${lvl}`);
+        if (el && exercisesDB[lvl]) {
+          const count = exercisesDB[lvl].length;
+          el.textContent = `${count} ${count === 1 ? "ejercicio" : "ejercicios"} →`;
+        }
+      });
+      const toeflBtn = document.getElementById("cta-TOEFL");
+      if (toeflBtn && exercisesDB.TOEFL) {
+        toeflBtn.textContent = `Entrar a TOEFL (${exercisesDB.TOEFL.length}) →`;
+      }
+    }
+    updateLevelCounts();
+
+    function showView(name) {
+      Object.values(views).forEach(v => v.classList.add("hidden"));
+      views[name].classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function goHome() {
+      currentLevel = null;
+      document.getElementById("header-badge").textContent = "Inicio";
+      showView("home");
+    }
+
+    function selectLevel(level) {
+      currentLevel = level;
+      const label = level === "TOEFL" ? "Sección TOEFL" : `Nivel ${level}`;
+      document.getElementById("header-badge").textContent = label;
+      document.getElementById("menu-title").textContent = level === "TOEFL"
+        ? "Ejercicios de Preparación TOEFL"
+        : `Ejercicios Nivel ${level}`;
+      renderMenu(level);
+      showView("menu");
+    }
+
+    function backToMenu() {
+      selectLevel(currentLevel);
+    }
+
+    function renderMenu(level) {
+      const container = document.getElementById("exercise-list");
+      const jumpBar = document.getElementById("topic-jump-bar");
+      container.innerHTML = "";
+      jumpBar.innerHTML = "";
+      jumpBar.classList.add("hidden");
+
+      const exercises = exercisesDB[level] || [];
+      if (exercises.length === 0) {
+        container.innerHTML = `<p style="color: var(--muted);">Próximamente agregaremos ejercicios para este nivel.</p>`;
+        return;
+      }
+
+      const hasTopics = exercises.some(ex => ex.topic);
+      if (hasTopics) {
+        const grouped = {};
+        exercises.forEach(ex => {
+          const t = ex.topic || "General";
+          if (!grouped[t]) grouped[t] = [];
+          grouped[t].push(ex);
+        });
+
+        const topicNames = Object.keys(grouped);
+        if (topicNames.length > 3) jumpBar.classList.remove("hidden");
+
+        topicNames.forEach((topicName, idx) => {
+          const anchorId = `topic-group-${idx}`;
+          const chip = document.createElement("button");
+          chip.className = "topic-jump-chip";
+          chip.textContent = topicName;
+          chip.onclick = () => document.getElementById(anchorId).scrollIntoView({ behavior: "smooth" });
+          jumpBar.appendChild(chip);
+
+          const groupDiv = document.createElement("div");
+          groupDiv.className = "topic-group";
+          groupDiv.id = anchorId;
+
+          const heading = document.createElement("h3");
+          heading.className = "topic-header";
+          heading.textContent = topicName;
+          groupDiv.appendChild(heading);
+
+          const grid = document.createElement("div");
+          grid.className = "topic-grid";
+          grouped[topicName].forEach(ex => grid.appendChild(createExerciseCard(ex, level)));
+
+          groupDiv.appendChild(grid);
+          container.appendChild(groupDiv);
+        });
+      } else {
+        const list = document.createElement("div");
+        list.className = "exercise-list";
+        exercises.forEach(ex => list.appendChild(createExerciseCard(ex, level)));
+        container.appendChild(list);
+      }
+    }
+
+    function createExerciseCard(ex, level) {
+      const card = document.createElement("div");
+      card.className = "exercise-item";
+      card.onclick = () => startExercise(ex);
+      card.innerHTML = `
+        <div>
+          <span class="exercise-tag">${ex.typeLabel}</span>
+          <h3>${ex.title}</h3>
+          <p style="color: var(--muted); font-size: 0.88rem;">${ex.description}</p>
+        </div>
+        <button class="btn ${level === "TOEFL" ? "btn-toefl" : ""}">Practicar →</button>
+      `;
+      return card;
+    }
+
+    // ==========================================
+    // MOTOR DE EJERCICIOS
+    // ==========================================
+    function startExercise(exercise) {
+      currentExercise = exercise;
+      currentIndex = 0;
+      score = 0;
+      const prefix = exercise.topic ? `${currentLevel} · ${exercise.topic}` : currentLevel;
+      document.getElementById("exercise-title").textContent = `${prefix} — ${exercise.title}`;
+      showView("exercise");
+      renderStep();
+    }
+
+    function renderStep() {
+      const container = document.getElementById("quiz-container");
+      container.innerHTML = "";
+
+      if (currentExercise.type === "matching") {
+        renderMatching(container);
+        return;
+      }
+
+      const questions = currentExercise.questions;
+      if (currentIndex >= questions.length) {
+        renderSummary(container, questions.length);
+        return;
+      }
+
+      const progressWrap = document.createElement("div");
+      progressWrap.className = "progress-wrapper";
+      const percent = Math.round(((currentIndex + 1) / questions.length) * 100);
+      progressWrap.innerHTML = `
+        <div class="progress-text">
+          <span>Pregunta ${currentIndex + 1} de ${questions.length}</span>
+          <span>${percent}%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width: ${percent}%"></div>
+        </div>
+      `;
+      container.appendChild(progressWrap);
+
+      const q = questions[currentIndex];
+      const passageText = q.passage || currentExercise.passage;
+      if (passageText) {
+        const passBox = document.createElement("div");
+        passBox.className = "reading-passage";
+        passBox.innerHTML = `<span class="reading-label">📖 Lectura</span>`;
+        passBox.appendChild(document.createTextNode(passageText));
+        container.appendChild(passBox);
+      }
+
+      if (currentExercise.type === "multiple-choice") {
+        renderMultipleChoice(container, q);
+      } else if (currentExercise.type === "fill-blank") {
+        renderFillBlank(container, q);
+      } else if (currentExercise.type === "scramble") {
+        renderScramble(container, q);
+      }
+    }
+
+    // 1. OPCIÓN MÚLTIPLE
+    function renderMultipleChoice(container, q) {
+      const title = document.createElement("h3");
+      title.className = "question-title";
+      title.textContent = q.prompt;
+      container.appendChild(title);
+
+      const grid = document.createElement("div");
+      grid.className = "options-grid";
+      const feedback = document.createElement("div");
+      const nextBtn = createNextButton();
+
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.textContent = opt;
+        btn.onclick = () => {
+          Array.from(grid.children).forEach(b => (b.disabled = true));
+          if (opt === q.answer) {
+            btn.classList.add("correct");
+            score++;
+            showFeedback(feedback, true, `¡Correcto! ${q.explanation || ""}`);
+          } else {
+            btn.classList.add("wrong");
+            Array.from(grid.children).forEach(b => {
+              if (b.textContent === q.answer) b.classList.add("correct");
+            });
+            showFeedback(feedback, false, `Incorrecto. La respuesta es "${q.answer}". ${q.explanation || ""}`);
+          }
+          nextBtn.classList.remove("hidden");
+        };
+        grid.appendChild(btn);
+      });
+
+      container.appendChild(grid);
+      container.appendChild(feedback);
+
+      const actions = document.createElement("div");
+      actions.className = "quiz-actions";
+      actions.appendChild(nextBtn);
+      container.appendChild(actions);
+    }
+
+    // 2. RELLENAR EL ESPACIO (Soporta múltiples ___ y alternativas con "|")
+    function normalizeText(str) {
+      return str.trim().toLowerCase().replace(/[’‘]/g, "'").replace(/\s+/g, " ");
+    }
+
+    function renderFillBlank(container, q) {
+      const p = document.createElement("p");
+      p.className = "fill-sentence";
+
+      const parts = q.sentence.split("___");
+      const inputs = [];
+
+      parts.forEach((part, idx) => {
+        p.appendChild(document.createTextNode(part));
+        if (idx < parts.length - 1) {
+          const input = document.createElement("input");
+          input.type = "text";
+          input.className = "blank-input";
+          input.placeholder = "escribe aquí";
+          inputs.push(input);
+          p.appendChild(input);
+        }
+      });
+
+      container.appendChild(p);
+
+      const feedback = document.createElement("div");
+      container.appendChild(feedback);
+
+      const actions = document.createElement("div");
+      actions.className = "quiz-actions";
+
+      const checkBtn = document.createElement("button");
+      checkBtn.className = "btn";
+      checkBtn.textContent = "Comprobar";
+
+      const nextBtn = createNextButton();
+      const expectedAnswers = Array.isArray(q.answer) ? q.answer : [q.answer];
+
+      const verify = () => {
+        if (inputs.some(inp => !inp.value.trim())) return;
+        checkBtn.classList.add("hidden");
+
+        let allCorrect = true;
+        inputs.forEach((inp, idx) => {
+          inp.disabled = true;
+          const userVal = normalizeText(inp.value);
+          const validOpts = (expectedAnswers[idx] || "").split("|").map(normalizeText);
+          if (validOpts.includes(userVal)) {
+            inp.classList.add("correct");
+          } else {
+            inp.classList.add("wrong");
+            allCorrect = false;
+          }
+        });
+
+        const formattedAnswer = expectedAnswers.map(a => a.split("|")[0]).join(" / ");
+        if (allCorrect) {
+          score++;
+          showFeedback(feedback, true, `¡Excelente! ${q.explanation || ""}`);
+        } else {
+          showFeedback(feedback, false, `La respuesta correcta es: "${formattedAnswer}". ${q.explanation || ""}`);
+        }
+        nextBtn.classList.remove("hidden");
+      };
+
+      checkBtn.onclick = verify;
+      inputs.forEach((inp, idx) => {
+        inp.addEventListener("keypress", e => {
+          if (e.key === "Enter") {
+            if (idx < inputs.length - 1) inputs[idx + 1].focus();
+            else verify();
+          }
+        });
+      });
+
+      actions.appendChild(checkBtn);
+      actions.appendChild(nextBtn);
+      container.appendChild(actions);
+      if (inputs[0]) setTimeout(() => inputs[0].focus(), 50);
+    }
+
+    // 3. RELACIONAR COLUMNAS
+    function renderMatching(container) {
+      const title = document.createElement("h3");
+      title.className = "question-title";
+      title.textContent = "Haz clic en un elemento de la izquierda y luego en su pareja de la derecha.";
+      container.appendChild(title);
+
+      const pairs = currentExercise.pairs;
+      const leftItems = shuffle([...pairs]);
+      const rightItems = shuffle([...pairs]);
+
+      let selectedLeft = null;
+      let selectedRight = null;
+      let matchedCount = 0;
+
+      const grid = document.createElement("div");
+      grid.className = "matching-grid";
+      const colLeft = document.createElement("div");
+      colLeft.className = "match-col";
+      const colRight = document.createElement("div");
+      colRight.className = "match-col";
+
+      const feedback = document.createElement("div");
+      const finishBtn = document.createElement("button");
+      finishBtn.className = "btn hidden";
+      finishBtn.textContent = "Terminar ejercicio";
+      finishBtn.onclick = () => backToMenu();
+
+      function checkPair() {
+        if (!selectedLeft || !selectedRight) return;
+        const lEl = selectedLeft;
+        const rEl = selectedRight;
+        selectedLeft = null;
+        selectedRight = null;
+
+        if (lEl.dataset.id === rEl.dataset.id) {
+          lEl.classList.remove("selected");
+          rEl.classList.remove("selected");
+          lEl.classList.add("matched");
+          rEl.classList.add("matched");
+          matchedCount++;
+          if (matchedCount === pairs.length) {
+            showFeedback(feedback, true, "¡Felicidades! Relacionaste todas las parejas correctamente.");
+            finishBtn.classList.remove("hidden");
+          }
+        } else {
+          lEl.classList.add("wrong");
+          rEl.classList.add("wrong");
+          setTimeout(() => {
+            lEl.classList.remove("selected", "wrong");
+            rEl.classList.remove("selected", "wrong");
+          }, 500);
+        }
+      }
+
+      leftItems.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "match-item";
+        div.textContent = item.left;
+        div.dataset.id = item.id;
+        div.onclick = () => {
+          if (div.classList.contains("matched")) return;
+          Array.from(colLeft.children).forEach(c => c.classList.remove("selected"));
+          div.classList.add("selected");
+          selectedLeft = div;
+          checkPair();
+        };
+        colLeft.appendChild(div);
+      });
+
+      rightItems.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "match-item";
+        div.textContent = item.right;
+        div.dataset.id = item.id;
+        div.onclick = () => {
+          if (div.classList.contains("matched")) return;
+          Array.from(colRight.children).forEach(c => c.classList.remove("selected"));
+          div.classList.add("selected");
+          selectedRight = div;
+          checkPair();
+        };
+        colRight.appendChild(div);
+      });
+
+      grid.appendChild(colLeft);
+      grid.appendChild(colRight);
+      container.appendChild(grid);
+      container.appendChild(feedback);
+
+      const actions = document.createElement("div");
+      actions.className = "quiz-actions";
+      actions.appendChild(finishBtn);
+      container.appendChild(actions);
+    }
+
+    // 4. ORDENAR PALABRAS (SCRAMBLE & BUILD A SENTENCE)
+    function normalizeSentence(str, keepQuestionMark) {
+      let clean = str
+        .toLowerCase()
+        .replace(/[’‘]/g, "'")
+        .replace(/,/g, "")
+        .replace(/\s+([?.!])/g, "$1")
+        .replace(/\.$/, "")
+        .trim();
+      if (!keepQuestionMark) clean = clean.replace(/\?$/, "");
+      return clean;
+    }
+
+    function renderScramble(container, q) {
+      if (q.prompt) {
+        const qPrompt = document.createElement("div");
+        qPrompt.className = "reading-passage";
+        qPrompt.innerHTML = `<span class="reading-label">💬 Pregunta</span>`;
+        qPrompt.appendChild(document.createTextNode(q.prompt));
+        container.appendChild(qPrompt);
+      }
+
+      const title = document.createElement("h3");
+      title.className = "question-title";
+      title.textContent = "Ordena las palabras para formar la oración:";
+      container.appendChild(title);
+
+      const tokensSource = q.tokens ? q.tokens : q.sentence.split(" ");
+      const hasQuestionMarkToken = tokensSource.includes("?");
+      const tokens = tokensSource.map((word, idx) => ({ word, idx }));
+      const shuffledTokens = shuffle([...tokens]);
+      let selected = [];
+      let locked = false;
+
+      const answerBox = document.createElement("div");
+      answerBox.className = "answer-box";
+      const bankBox = document.createElement("div");
+      bankBox.className = "word-bank";
+
+      const feedback = document.createElement("div");
+      const checkBtn = document.createElement("button");
+      checkBtn.className = "btn";
+      checkBtn.textContent = "Comprobar";
+      const nextBtn = createNextButton();
+
+      function renderTokens() {
+        answerBox.innerHTML = "";
+        bankBox.innerHTML = "";
+
+        selected.forEach(tok => {
+          const chip = document.createElement("span");
+          chip.className = "word-chip";
+          chip.textContent = tok.word;
+          chip.onclick = () => {
+            if (locked) return;
+            selected = selected.filter(t => t.idx !== tok.idx);
+            renderTokens();
+          };
+          answerBox.appendChild(chip);
+        });
+
+        shuffledTokens.forEach(tok => {
+          if (!selected.some(t => t.idx === tok.idx)) {
+            const chip = document.createElement("span");
+            chip.className = "word-chip";
+            chip.textContent = tok.word;
+            chip.onclick = () => {
+              if (locked) return;
+              selected.push(tok);
+              renderTokens();
+            };
+            bankBox.appendChild(chip);
+          }
+        });
+      }
+
+      checkBtn.onclick = () => {
+        if (selected.length === 0) return;
+        locked = true;
+        checkBtn.classList.add("hidden");
+        const userSentence = selected.map(t => t.word).join(" ");
+        if (
+          normalizeSentence(userSentence, hasQuestionMarkToken) ===
+          normalizeSentence(q.sentence, hasQuestionMarkToken)
+        ) {
+          score++;
+          showFeedback(feedback, true, `¡Orden perfecto! "${q.sentence}"`);
+        } else {
+          showFeedback(feedback, false, `El orden correcto es: "${q.sentence}"`);
+        }
+        nextBtn.classList.remove("hidden");
+      };
+
+      renderTokens();
+      container.appendChild(answerBox);
+      container.appendChild(bankBox);
+      container.appendChild(feedback);
+
+      const actions = document.createElement("div");
+      actions.className = "quiz-actions";
+      actions.appendChild(checkBtn);
+      actions.appendChild(nextBtn);
+      container.appendChild(actions);
+    }
+
+    function createNextButton() {
+      const btn = document.createElement("button");
+      btn.className = "btn hidden";
+      btn.textContent = "Siguiente →";
+      btn.onclick = () => {
+        currentIndex++;
+        renderStep();
+      };
+      return btn;
+    }
+
+    function showFeedback(el, isSuccess, msg) {
+      el.className = `feedback-box ${isSuccess ? "success" : "error"}`;
+      el.textContent = msg;
+    }
+
+    function renderSummary(container, total) {
+      container.innerHTML = `
+        <div style="text-align: center; padding: 1.5rem 1rem;">
+          <h2 style="font-size: 1.8rem;">¡Ejercicio completado! 🎉</h2>
+          <p style="font-size: 1.25rem; margin: 1rem 0; color: var(--muted);">
+            Tu puntuación: <strong style="color: var(--ink);">${score} de ${total}</strong>
+          </p>
+          <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.8rem; flex-wrap: wrap;">
+            <button class="btn btn-secondary" onclick="startExercise(currentExercise)">Repetir ejercicio</button>
+            <button class="btn" onclick="backToMenu()">Volver al menú ${currentLevel}</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+  </script>
+</body>
+</html>
+
+
